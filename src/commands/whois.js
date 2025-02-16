@@ -7,7 +7,7 @@ const {
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("whois")
-    .setDescription("Displays user information directly (ephemeral)."),
+    .setDescription("Displays user information."),
   async execute(interaction) {
     const user = interaction.user;
     const member = interaction.member; // Available in guild context
