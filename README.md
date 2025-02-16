@@ -1,19 +1,17 @@
 # Discord bot 🤖 template for DiscordJS bots
 
-This repository contains a basic template for creating Discord bots using `discord.js`, `pm2` for process management, `.env` for environment variable configuration, and MongoDB as the database.
+This repository contains a basic template for creating Discord bots using `discord.js`, `pm2` for process management and `.env` for environment variable configuration.
 
 ## Features
 
 - [**Discord.js**](https://discord.js.org/): Library to interact with the Discord API.
 - [**PM2**](https://pm2.keymetrics.io/): Process manager for Node.js applications, making it easy to run and monitor your bot.
 - [**.env**](https://www.npmjs.com/package/dotenv): Environment variable file to securely manage configuration settings.
-- [**MongoDB**](https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/): NoSQL database for storing persistent data.
 - **Discord notification ErrorHandler**: Sometimes you may encounter errors after deploying your bot; that's why I usually link `error handlers` to a channel in a personal Discord server so I can get notified.
 
 ## Prerequisites
 
 - Node.js (version 14 or later)
-- MongoDB (local or remote instance) <u>(_Optional_)</u>
 - PM2 (install globally using `npm install pm2 -g`)
 
 ## Installation
@@ -54,20 +52,19 @@ GUILD_ID=your_guild_id
 - **Database:** Use the models directory to define your MongoDB schemas.
 - **Error handler channel:** `uncaughtException` and `unhandledRejection` will be notified in your personal `discord-channel`
 
-  ### Test the "whois" default command to check if your bot is alive! :)
+  ## Example commands:
 
-  ```console
-  node deploy-commands.js
-  ```
-
-  Go into any channel where the bot has permissions and type `/whois`, an embed like this should pop up:
-  <img src="https://i.imgur.com/kUUVbLl_d.webp?maxwidth=760&fidelity=grand">
+- `/testButton` <br>
+  <img src="https://i.imgur.com/TK2f5eW.png">
+- `/testModal` <br>
+  <img src="https://i.imgur.com/jGcKKAQ.png">
+- `/testSelect` <br>
+  <img src="https://i.imgur.com/3kuYbMz.png">
 
 ## Dependencies
 
 - `discord.js`: For interacting with the Discord API.
 - `dotenv`: For loading environment variables from a .env file.
-- `mongoose`: For MongoDB object modeling. <u>(_Optional_)</u>
 - `pm2`: For process management.
 
 ## Contributing

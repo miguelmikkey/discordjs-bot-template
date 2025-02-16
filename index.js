@@ -155,11 +155,11 @@ client.once("ready", async () => {
     const commandsData = client.commands.map((command) =>
       command.data.toJSON()
     );
-    if (process.env.GUILD_ID) {
+    if (process.env.DEV_GUILD_ID) {
       const guild = client.guilds.cache.get(process.env.GUILD_ID);
       if (!guild) {
         console.warn(
-          "Guild not found. Make sure the bot is in the guild specified by GUILD_ID."
+          "Development guild not found. Make sure the bot is in the guild specified by DEV_GUILD_ID."
         );
       } else {
         await guild.commands.set(commandsData);
@@ -171,7 +171,7 @@ client.once("ready", async () => {
     }
 
     // Register error handlers once the client is ready
-    registerErrorHandlers(client, process.env.ERROR_TRACK_CHANNEL_ID);
+    registerErrorHandlers(client, process.env.ERROR_HANDLER_CHANNEL_ID);
 
     // Set the bot's presence
     client.user.setPresence({
