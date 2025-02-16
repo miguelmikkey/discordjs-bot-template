@@ -1,0 +1,25 @@
+{
+  "name": "discord-bot-template",
+  "version": "1.0.0",
+  "description": "This repository contains a basic template for creating Discord bots using `discord.js`, `pm2` for process management, `.env` for environment variable configuration, and MongoDB as the database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguelmikkey/discord-bot-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miguelmikkey/discord-bot-template/issues"
+  },
+  "homepage": "https://github.com/miguelmikkey/discord-bot-template#readme",
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7",
+    "mongoose": "^8.10.1"
+  }
+}
