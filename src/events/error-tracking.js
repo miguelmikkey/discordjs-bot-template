@@ -11,7 +11,7 @@ const registerErrorHandlers = (client, errorChannelID) => {
           .setColor("Red")
           .setTitle("uncaughtException!")
           .addFields({
-            name: "Cliente",
+            name: "Client",
             value: `<@${client.user?.id}>` || "unavailable",
           })
           .setDescription(
@@ -45,7 +45,7 @@ ${err.stack}
           .setColor("Red")
           .setTitle("Unhandled Rejection")
           .addFields({
-            name: "Cliente",
+            name: "Client",
             value: `<@${client.user?.id}>` || "Unavailable",
           })
           .setDescription(
