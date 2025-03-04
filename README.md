@@ -39,7 +39,7 @@ npm install
 
 ### 3. Set up environment variables:
 
-Rename `example.env` to `.env` file in the root directory of the project and add your configuration settings:
+Rename `.env.example` to `.env` file in the root directory of the project and add your configuration settings:
 
 ```.env
 # General variables
