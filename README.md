@@ -125,9 +125,9 @@ In this example, if the embed is triggered in a server where "English" is select
 
 ## Contributing
 
-> [!NOTE] > **¡Im a `Trainee`, any help or TIPs are welcome.**
-> Keep in mind that this is just a template for general-purpose bots; it has to be versatile , efficient, and lightweight. With that said , feel free to fork this repository and submit pull requests. **Contributions are welcome!** :D
-
+> [!NOTE]
+> **¡Im a Trainee**
+> Any help or TIPs are welcome. Keep in mind that this is just a template for general-purpose bots; it has to be versatile , efficient, and lightweight. With that said , feel free to fork this repository and submit pull requests. **Contributions are welcome!** :D
 ## License
 
 This project is licensed under the [MIT](https://github.com/miguelmikkey/discord-bot-template/blob/main/LICENSE) License.
