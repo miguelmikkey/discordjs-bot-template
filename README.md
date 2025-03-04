@@ -19,6 +19,7 @@ This repository contains a basic template for creating Discord bots using `disco
 
 - Node.js (version 14 or later)
 - PM2 (install globally using `npm install pm2 -g`)
+- Use `npm install` to install the required packages
 
 ## Installation
 
