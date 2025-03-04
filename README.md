@@ -44,10 +44,13 @@ Rename `example.env` to `.env` file in the root directory of the project and add
 ```.env
 # General variables
 DISCORD_TOKEN=your_discord_bot_token
+CLIENT_ID=your_bot_id
+DEV_GUILD_ID=your_dev_guild_id # For command propagation purposes
 
 # Optional variables
-ERROR_HANDLER_CHANNEL_ID=your_error_handler_channel_id
-GUILD_ID=your_guild_id
+ERROR_HANDLER_MENTION_ID=the_role_you_want_to_be_mentioned
+ERROR_HANDLER_CHANNEL_ID=your_error_handler_channel_id # Role ID
+GUILD_ID=your_guild_id # For error handler purposes
 ```
 
 ## Usage
