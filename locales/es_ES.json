@@ -4,7 +4,7 @@
     "testSelectMenu": "Esta es una respuesta de interacción para el comando `/testSelect`"
   },
   "buttons": {
-    "testButtonLabel": "¡Haz clic en mí! 😝"
+    "testButtonLabel": "¡Clicka en mí! 😝"
   },
   "modals": {
     "exampleModal": {
