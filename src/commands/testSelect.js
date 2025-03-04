@@ -4,32 +4,44 @@ const {
   StringSelectMenuBuilder,
 } = require("discord.js");
 
+// Import the translate function
+const t = require("../utils/translate");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("testselect")
     .setDescription("Tests the example select menu interaction"),
   async execute(interaction) {
+    // Get the guild's preferred locale
+    const locale = interaction.guild.preferredLocale || "en_US";
+
     // Create a select menu with the customId matching the handler in interactions/selectMenus/exampleSelectMenu.js
     const selectMenu = new StringSelectMenuBuilder()
       .setCustomId("exampleSelectMenu")
-      .setPlaceholder("Choose an option")
+      .setPlaceholder(t(locale, "selectMenus.exampleSelectMenu.Placeholder"))
       .addOptions([
         {
-          label: "Option 1",
-          value: "option1",
-          description: "This is the first option",
+          label: t(locale, "selectMenus.exampleSelectMenu.option1"),
+          value: t(locale, "selectMenus.exampleSelectMenu.option1"),
+          description: t(
+            locale,
+            "selectMenus.exampleSelectMenu.option1description"
+          ),
         },
         {
-          label: "Option 2",
-          value: "option2",
-          description: "This is the second option",
+          label: t(locale, "selectMenus.exampleSelectMenu.option2"),
+          value: t(locale, "selectMenus.exampleSelectMenu.option2"),
+          description: t(
+            locale,
+            "selectMenus.exampleSelectMenu.option2description"
+          ),
         },
       ]);
 
     const row = new ActionRowBuilder().addComponents(selectMenu);
 
     await interaction.reply({
-      content: "Please select an option:",
+      content: t(locale, "commands.testSelectMenu"),
       components: [row],
     });
   },

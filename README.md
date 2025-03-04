@@ -9,6 +9,7 @@ This repository contains a basic template for creating Discord bots using `disco
 - [**PM2**](https://pm2.keymetrics.io/): Process manager for Node.js applications, making it easy to run and monitor your bot.
 - [**.env**](https://www.npmjs.com/package/dotenv): Environment variable file to securely manage configuration settings.
 - **Discord notification ErrorHandler**: Sometimes you may encounter errors after deploying your bot; that's why I usually link `error handlers` to a channel in a personal Discord server so I can get notified.<br>
+- [**locales**](#-locales-add-multiple-languages-to-your-bot) folder. Theres nothing like supporting multiple languages if you want your bot to be popular, more information about how to use this below.
 
 ## ErrorHandler example (_I find this very useful for production_)
 
@@ -64,6 +65,54 @@ GUILD_ID=your_guild_id
   <img src="https://i.imgur.com/jGcKKAQ.png">
 - `/testSelect` <br>
   <img src="https://i.imgur.com/3kuYbMz.png">
+
+## 📁 locales (`Add multiple languages to your bot`)
+
+The variables you will have to use around your code:
+
+- `t`: This will import the translate function from `translate.js`
+- `locale`: This will detect the server's preferred language. **Note that this only works if the server has the Community feature enabled**; otherwise, it defaults to `en_US`. You can modify this behavior as needed, such as by adding an option for users to switch between languages.
+
+### Example:
+
+```js
+const t = require("./src/utils/translate");
+const locale = guild.preferredLocale || "en_US";
+
+const embed = new EmbedBuilder()
+  .setTitle(t(locale, "embeds.exampleTitle"))
+  .setDescription(
+    t(locale, "embeds.exampleDescription", {
+      userID: interaction.user.id,
+    })
+  );
+```
+
+```json
+// .JSON file (/locales/en_US.json)
+{
+  "embeds": {
+    "exampleTitle": "This is a title",
+    "exampleDescription": "Hey <@{userID}>, this is a description!"
+  }
+}
+```
+
+```json
+// .JSON file (/locales/es_ES.json)
+{
+  "embeds": {
+    "exampleTitle": "Esto es un título.",
+    "exampleDescription": "Hey <@{userID}>, esto es una descripción!"
+  }
+}
+```
+
+In this example, if the embed is triggered in a server where "English" is selected as the preferred language, it will use the first option (`en_US`) for translation. However, if "Spanish" is selected, it will use `es_ES` instead. If there is no `es_ES` file available, it will default to `en_US`.
+
+### Example with the `/testButton` command.
+
+<img src="https://i.imgur.com/dynX26p_d.webp?maxwidth=760&fidelity=grand">
 
 ## Dependencies
 

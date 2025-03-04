@@ -1,0 +1,39 @@
+{
+  "commands": {
+    "testButton": "Esta es una respuesta de interacción para el comando `/testButton`",
+    "testSelectMenu": "Esta es una respuesta de interacción para el comando `/testSelect`"
+  },
+  "buttons": {
+    "testButtonLabel": "¡Haz clic en mí! 😝"
+  },
+  "modals": {
+    "exampleModal": {
+      "Title": "Este es un modal de ejemplo",
+      "Label": "Escribe algo a continuación",
+      "Placeholder": "Escribe aquí..."
+    }
+  },
+  "selectMenus": {
+    "exampleSelectMenu": {
+      "Placeholder": "Selecciona una opción",
+      "option1": "Opción 1",
+      "option1description": "Esta es la primera opción",
+      "option2": "Opción 2",
+      "option2description": "Esta es la segunda opción"
+    }
+  },
+  "interactions": {
+    "noHandlerButton": "No se encontró un manejador para este botón",
+    "noHandlerSelectMenu": "No se encontró un manejador para este menú de selección",
+    "noHandlerModal": "No se encontró un manejador para este modal",
+    "buttons": {
+      "exampleButton": "¡Has hecho clic en el botón!"
+    },
+    "modals": {
+      "exampleModal": "Has enviado: {input}"
+    },
+    "selectMenus": {
+      "exampleSelectMenu": "Has seleccionado: {option}"
+    }
+  }
+}

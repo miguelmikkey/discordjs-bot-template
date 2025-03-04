@@ -1,6 +1,8 @@
 const path = require("path");
 require("dotenv").config();
 const fs = require("fs");
+// Translation function
+const t = require("./src/utils/translate");
 
 const {
   Client,
@@ -9,6 +11,7 @@ const {
   MessageFlags,
   ActivityType,
   Partials,
+  Locale,
 } = require("discord.js");
 
 // Import the error handlers module

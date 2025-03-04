@@ -1,6 +1,6 @@
 {
   "name": "discord-bot-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This repository contains a basic template for creating Discord bots using `discord.js`, `pm2` for process management, `.env` for environment variable configuration, and MongoDB as the database.",
   "main": "index.js",
   "scripts": {
