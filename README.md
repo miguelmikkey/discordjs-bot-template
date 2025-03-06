@@ -8,7 +8,7 @@
 ![master](https://img.shields.io/github/last-commit/miguelmikkey/discordjs-bot-template/main)
 ![discordjsversion](https://img.shields.io/badge/discord.js-^14.18.0-5865f2)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
-![Static Badge](https://img.shields.io/badge/DiscordJS-guide-379C6F?link=https%3A%2F%2Fdiscordjs.guide%2F)
+<a rel="https://discordjs.guide/">![Static Badge](https://img.shields.io/badge/DiscordJS-guide-379C6F?link=https%3A%2F%2Fdiscordjs.guide%2F)</a>
 
 </p>
 
