@@ -1,4 +1,4 @@
-<center>
+<div style="text-align:center">
 
 # Discord bot 🤖 template for DiscordJS bots
 
@@ -8,11 +8,11 @@
 ![master](https://img.shields.io/github/last-commit/miguelmikkey/discordjs-bot-template/main)
 ![discordjsversion](https://img.shields.io/badge/discord.js-^14.18.0-5865f2)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
-<a rel="https://discordjs.guide/">![Static Badge](https://img.shields.io/badge/DiscordJS-guide-379C6F)</a>
+<a href="https://discordjs.guide/">![Static Badge](https://img.shields.io/badge/DiscordJS-guide-379C6F)</a>
 
 </p>
 
-</center>
+</div>
 
 This repository contains a basic template for creating Discord bots using `discord.js`, `pm2` for process management and `.env` for environment variable configuration.
 
