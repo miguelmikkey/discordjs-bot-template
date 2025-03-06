@@ -1,16 +1,12 @@
-<div style="text-align:center">
+<div style="text-align:center" align="center">
 
 # Discord bot 🤖 template for DiscordJS bots
-
-<p>
 
 ![commits](https://badgen.net/github/commits/miguelmikkey/discordjs-bot-template/)
 ![master](https://img.shields.io/github/last-commit/miguelmikkey/discordjs-bot-template/main)
 ![discordjsversion](https://img.shields.io/badge/discord.js-^14.18.0-5865f2)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
-<a href="https://discordjs.guide/">![Static Badge](https://img.shields.io/badge/DiscordJS-guide-379C6F)</a>
-
-</p>
+<a href="https://discordjs.guide/" target="_blank">![Static Badge](https://img.shields.io/badge/DiscordJS-guide-379C6F)</a>
 
 </div>
 
