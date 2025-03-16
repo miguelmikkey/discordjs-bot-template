@@ -26,6 +26,7 @@ This repository contains a basic template for creating Discord bots using `disco
 - [**.env**](https://www.npmjs.com/package/dotenv): Environment variable file to securely manage configuration settings.
 - [**Custom Discord notification ErrorHandler**](#errorhandler-example-i-find-this-very-useful-for-production): Sometimes you may encounter errors after deploying your bot; that's why I usually link `error handlers` to a channel in a private Discord server so I can get notified.<br>
 - [**locales**](https://github.com/miguelmikkey/discordjs-bot-template/tree/main/locales/README.md) folder. Theres nothing like supporting multiple languages if you want your bot to be popular, more information about how to use this below.
+- *And much more!*
 
 ## Get started 😃
 - **Prerequisites and dependencies**<br>
@@ -42,7 +43,7 @@ This template contains a **versatile** design so you can create **your own** bot
 
 - **Guides**
     - 💿 Installation [`INSTALLATION.md`](https://github.com/miguelmikkey/discordjs-bot-template/blob/main/INSTALLATION.md)
-    - 📃 Usage [`USAGE.md`](https://github.com/miguelmikkey/discordjs-bot-template/blob/main/USAGE.md)
+    - 📃 locale (*Multiple languages*) [`./locales/README.md`](https://github.com/miguelmikkey/discordjs-bot-template/tree/main/locales/README.md)
     - Discord.js [Guide](https://discordjs.guide/#before-you-begin)
 
 ## Contributing 💁‍♂️
