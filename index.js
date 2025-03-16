@@ -99,7 +99,7 @@ client.once("ready", async () => {
     );
     // If the bot is in a development guild, register commands there instead of globally (for testing)
     if (process.env.DEV_GUILD_ID) {
-      const guild = client.guilds.cache.get(process.env.GUILD_ID);
+      const guild = client.guilds.cache.get(process.env.DEV_GUILD_ID);
       if (!guild) {
         console.warn(
           "Development guild not found. Make sure the bot is in the guild specified by DEV_GUILD_ID."
