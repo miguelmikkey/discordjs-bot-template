@@ -41,9 +41,8 @@ This repository contains a basic template for creating Discord bots using `disco
 This template contains a **versatile** design so you can create **your own** bot regardless of the idea behind it. This repository will be updated with every **discord.js** update, so you won't have to worry about deprecated code.
 
 - **Guides**
-    - 💿 Installation `INSTALLATION.md`
-    - 📃 Usage `USAGE.md`
-    - 💣 ErrorHandler notification `ERRORHANDLER.md`
+    - 💿 Installation [`INSTALLATION.md`](https://github.com/miguelmikkey/discordjs-bot-template/blob/main/INSTALLATION.md)
+    - 📃 Usage [`USAGE.md`](https://github.com/miguelmikkey/discordjs-bot-template/blob/main/USAGE.md)
     - Discord.js [Guide](https://discordjs.guide/#before-you-begin)
 
 ## Contributing 💁‍♂️
