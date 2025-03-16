@@ -10,7 +10,7 @@ module.exports = {
     // Get the guild's preferred locale
     const locale = interaction.guild.preferredLocale || "en_US";
 
-    // Responde de forma efímera para confirmar que se hizo clic en el botón
+    // Ephemeral reply to the button click
     await interaction.reply({
       content: t(locale, "interactions.buttons.exampleButton"),
       flags: MessageFlags.Ephemeral,

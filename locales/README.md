@@ -1,4 +1,20 @@
+<div style="text-align:center" align="center">
+
+# Discord.js Bot template | 2025✅
+
+<a href="https://discordjs.guide/" target="_blank">![Static Badge](https://img.shields.io/badge/DiscordJS-guide-379C6F)</a>
+![discordjsversion](https://img.shields.io/badge/discord.js-^14.18.0-5865f2)
+![GitHub contributors](https://img.shields.io/github/contributors/miguelmikkey/discordjs-bot-template?color=blue)
+![commits](https://badgen.net/github/commits/miguelmikkey/discordjs-bot-template/)
+![master](https://img.shields.io/github/last-commit/miguelmikkey/discordjs-bot-template/main)
+![Maintenance](https://img.shields.io/maintenance/yes/2025)
+![downloads](https://img.shields.io/github/downloads/miguelmikkey/discordjs-bot-template/total)
+![GitHub Created At](https://img.shields.io/github/created-at/miguelmikkey/discordjs-bot-template)
+
+</div>
+
 ## 📁 locales (`Work with multiple languages`)
+If you plan on building a popular bot, you must ensure that you support multiple languages. Very often, communities have their own primary language set in their settings, with "English, Spanish, Portuguese, and Russian" being the most commonly used languages around Discord.
 
 This method will use `locale` to find the Guilds preferred language, if the bot can't find it it will use `en_US` as default language. And `t` is the function that will locate the message that needs to be sent.
 

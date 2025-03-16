@@ -2,13 +2,6 @@ const { MessageFlags } = require("discord.js");
 
 module.exports = {
   name: "interactionCreate",
-  /**
-   * Handles the interactionCreate event.
-   * Delegates the interaction to the appropriate handler based on its type.
-   *
-   * @param {Client} client - The Discord client instance.
-   * @param {Interaction} interaction - The interaction received.
-   */
   execute: async (client, interaction) => {
     try {
       // Check if the interaction is a slash command (chat input command)

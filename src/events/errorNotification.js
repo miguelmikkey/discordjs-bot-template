@@ -1,5 +1,18 @@
 const { EmbedBuilder } = require("discord.js");
 require("dotenv").config();
+const { errorHandlerEmbed } = require("../assets/embeds");
+const path = require("path");
+
+const formatStackTrace = (stack) => {
+  const basePath = process.cwd();
+  const baseFolderName = path.basename(basePath); // e.g. "discord-bot-template"
+  return stack
+    .split("\n")
+    .map((line) =>
+      line.replace(new RegExp(basePath, "g"), `/${baseFolderName}`)
+    )
+    .join("\n");
+};
 
 const sendErrorMessage = async (client, errorChannelID, title, messageData) => {
   try {
@@ -8,15 +21,7 @@ const sendErrorMessage = async (client, errorChannelID, title, messageData) => {
       console.error("The channel with the provided ID was not found.");
       return;
     }
-    const embed = new EmbedBuilder()
-      .setColor("Red")
-      .setTitle(title)
-      .addFields({
-        name: "Client",
-        value: `<@${client.user?.id}>` || "Unavailable",
-      })
-      .setDescription(`\`\`\`${messageData}\`\`\``)
-      .setTimestamp();
+    const embed = errorHandlerEmbed(client, title, messageData);
 
     await channel.send({
       content: `<@&${process.env.ERROR_HANDLER_MENTION_ID}>!`,
@@ -31,7 +36,8 @@ const handleExit = () => setTimeout(() => process.exit(1), 1000);
 
 const registerErrorHandlers = (client, errorChannelID) => {
   process.on("uncaughtException", async (err) => {
-    const messageData = `Error: ${err.message}\nStack Trace:\n${err.stack}`;
+    const formattedStack = formatStackTrace(err.stack);
+    const messageData = `Error: ${err.message}\nStack Trace:\n${formattedStack}`;
     await sendErrorMessage(
       client,
       errorChannelID,
@@ -42,11 +48,13 @@ const registerErrorHandlers = (client, errorChannelID) => {
   });
 
   process.on("unhandledRejection", async (reason, promise) => {
+    let stack = "No trace available";
+    if (reason instanceof Error && reason.stack) {
+      stack = formatStackTrace(reason.stack);
+    }
     const messageData = `Reason: ${
       reason instanceof Error ? reason.message : reason
-    }\nStack Trace:\n${
-      reason instanceof Error ? reason.stack : "No trace available"
-    }`;
+    }\nStack Trace:\n${stack}`;
     await sendErrorMessage(
       client,
       errorChannelID,

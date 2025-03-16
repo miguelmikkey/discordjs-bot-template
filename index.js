@@ -4,12 +4,6 @@ const path = require("path");
 // Load environment variables from .env file
 require("dotenv").config();
 
-// File system module for reading files
-const fs = require("fs");
-
-// (UTILS) Load the translation module from the utils folder
-const t = require("./src/utils/translate");
-
 // (UTILS)
 const { loadFiles } = require("./src/utils/loadFiles");
 
@@ -23,7 +17,7 @@ const {
 } = require("discord.js");
 
 // Import the error handlers module
-const { registerErrorHandlers } = require("./src/events/error-tracking");
+const { registerErrorHandlers } = require("./src/events/errorNotification");
 
 // Create a new Discord client instance
 const client = new Client({

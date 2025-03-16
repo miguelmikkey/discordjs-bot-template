@@ -13,7 +13,7 @@
 
 </div>
 
-# Installation guide
+# Installation guide ℹ️
 ### 1. Create a Discord Application and Bot ✏️
 - Visit [**Discord Developer Portal**](https://discord.com/developers/applications) and create a **New application**.
 - Inside your application navigate to the Bot section, add a bot to your application, and copy the bot token.

@@ -1,7 +1,11 @@
 const { REST, Routes } = require("discord.js");
 const config = require("./src/config/config");
-
 const rest = new REST({ version: "10" }).setToken(config.BOT_TOKEN);
+
+// Commands are loaded dynamically from the commands folder in the index.js file
+// if you want to delete all commands, you can use the following script
+// type `node purge-commands.js`. This will delete all commands from the bot.
+// This is useful when you want to clean up all the commands and start fresh.
 
 (async () => {
   try {

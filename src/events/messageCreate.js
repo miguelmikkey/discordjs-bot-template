@@ -1,16 +1,7 @@
-// src/events/messageCreate.js
-
 const { ChannelType } = require("discord.js");
 
 module.exports = {
   name: "messageCreate",
-  /**
-   * Handles the messageCreate event.
-   * If the message is a Direct Message (DM), replies with a simple message.
-   *
-   * @param {Client} client - The Discord client instance.
-   * @param {Message} message - The received message.
-   */
   execute: async (client, message) => {
     try {
       // Ignore messages from bots to prevent loops
