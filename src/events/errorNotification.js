@@ -3,6 +3,10 @@ require("dotenv").config();
 const { errorHandlerEmbed } = require("../assets/embeds");
 const path = require("path");
 
+// This function formats the stack trace to replace the base path with the base folder name
+// e.g. /home/user/discord-bot-template -> /discord-bot-template
+// This is done to prevent leaking the full path of the bot in the error messages
+// which could be a security risk
 const formatStackTrace = (stack) => {
   const basePath = process.cwd();
   const baseFolderName = path.basename(basePath); // e.g. "discord-bot-template"
