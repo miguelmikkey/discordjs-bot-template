@@ -1,6 +1,7 @@
 const { EmbedBuilder } = require("discord.js");
 const { getColor } = require("./colors");
 
+// Error handler notification embed
 const errorHandlerEmbed = (client, title, messageData) => {
   return new EmbedBuilder()
     .setColor(getColor("error"))

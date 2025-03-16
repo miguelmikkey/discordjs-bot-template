@@ -8,8 +8,9 @@
 ![commits](https://badgen.net/github/commits/miguelmikkey/discordjs-bot-template/)
 ![master](https://img.shields.io/github/last-commit/miguelmikkey/discordjs-bot-template/main)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
-![downloads](https://img.shields.io/github/downloads/miguelmikkey/discordjs-bot-template/total)
 ![GitHub Created At](https://img.shields.io/github/created-at/miguelmikkey/discordjs-bot-template)
+![GitHub Repo stars](https://img.shields.io/github/stars/miguelmikkey/discordjs-bot-template)
+
 
 </div>
 
