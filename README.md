@@ -13,9 +13,12 @@
 
 </div>
 
+> [!CAUTION]
+> **THIS REPOSITORY IS NOT FINISHED YET AND MAY CONTAIN ERRORS OR MISSING INFORMATION**, once the first version is available, it will be published as a `release`.
+
 This repository contains a basic template for creating Discord bots using `discord.js`, `pm2` for process management and `.env` for environment variable configuration.
 
-## Features
+## Features 🎨
 
 - **Basic structure** to start your own project.
 - [**Discord.js**](https://discord.js.org/): Library to interact with the Discord API.
@@ -24,11 +27,30 @@ This repository contains a basic template for creating Discord bots using `disco
 - [**Custom Discord notification ErrorHandler**](#errorhandler-example-i-find-this-very-useful-for-production): Sometimes you may encounter errors after deploying your bot; that's why I usually link `error handlers` to a channel in a private Discord server so I can get notified.<br>
 - [**locales**](https://github.com/miguelmikkey/discordjs-bot-template/tree/main/locales/README.md) folder. Theres nothing like supporting multiple languages if you want your bot to be popular, more information about how to use this below.
 
-## Contributing
+## Get started 😃
+- **Prerequisites and dependencies**<br>
+    - `node.js` - version 18 or newer **required** 🚨
+    - `discord.js` - version 14.18.0 or newer **require** 🚨
+    - `dotenv` - not required but **recommended**
+    - `pm2` - not required but **recommended**
+        - `npm install pm2 -g` *to install it globally*
+    - `nodemon` - not required but **recommended**
+        - `npm install -g nodemon` *to install it globally*
+
+- **Why this template?** 🤔<br>
+This template contains a **versatile** design so you can create **your own** bot regardless of the idea behind it. This repository will be updated with every **discord.js** update, so you won't have to worry about deprecated code.
+
+- **Guides**
+    - 💿 Installation `INSTALLATION.md`
+    - 📃 Usage `USAGE.md`
+    - 💣 ErrorHandler notification `ERRORHANDLER.md`
+    - Discord.js [Guide](https://discordjs.guide/#before-you-begin)
+
+## Contributing 💁‍♂️
 
 - Ensure that any new functionality or feature is **general-purpose** and enhances the **template's versatility**. Avoid adding features that are too specialized or tailored to specific use cases.
 - **Add comments** to help understand the code.
-- Use default **prettier** settings.
+- Use default **prettier** settings. *(ignore `.md` files)*
 - Write clear and descriptive **commit messages**. Each commit should explain the purpose of the change succinctly.
 - **Update and maintain documentation** for any new features or changes. Contributions should include clear explanations of functionality, configuration, and usage examples.
 - **Provide tests for new features when applicable**. Contributions should not break existing functionality, and ideally, they come with added unit or integration tests.
@@ -36,7 +58,7 @@ This repository contains a basic template for creating Discord bots using `disco
 > [!NOTE]
 > **Im a trainee developer**, Any help or TIPs are welcome. Keep in mind that this is just a template for general-purpose bots; it has to be versatile , efficient, and lightweight. With that said , feel free to fork this repository and submit pull requests. **Contributions are welcome!**
 
-## Useful docs
+## Useful docs 📚
 - [PermissionFlags](https://discord-api-types.dev/api/discord-api-types-v10#PermissionFlagsBits)
 - [SlashCommands](https://discordjs.guide/slash-commands/response-methods.html)
 - [EmbedBuilder](https://discordjs.guide/popular-topics/embeds.html)
