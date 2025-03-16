@@ -18,17 +18,14 @@ This repository contains a basic template for creating Discord bots using `disco
 - [**Discord.js**](https://discord.js.org/): Library to interact with the Discord API.
 - [**PM2**](https://pm2.keymetrics.io/): Process manager for Node.js applications, making it easy to run and monitor your bot.
 - [**.env**](https://www.npmjs.com/package/dotenv): Environment variable file to securely manage configuration settings.
-- [**Discord notification ErrorHandler**](#errorhandler-example-i-find-this-very-useful-for-production): Sometimes you may encounter errors after deploying your bot; that's why I usually link `error handlers` to a channel in a personal Discord server so I can get notified.<br>
+- [**Custom Discord notification ErrorHandler**](#errorhandler-example-i-find-this-very-useful-for-production): Sometimes you may encounter errors after deploying your bot; that's why I usually link `error handlers` to a channel in a private Discord server so I can get notified.<br>
 - [**locales**](#-locales-add-multiple-languages-to-your-bot) folder. Theres nothing like supporting multiple languages if you want your bot to be popular, more information about how to use this below.
 
-## ErrorHandler example (_I find this very useful for production_)
-
-<img src="https://i.imgur.com/LZoe93x.png">
-
-## Prerequisites
+## Prerequisites / Dependencies
 
 - Node.js (version 14 or later)
 - PM2 (install globally using `npm install pm2 -g`)
+- discord.js (version 14.18.0 or later)
 
 ## Installation
 
@@ -63,28 +60,12 @@ ERROR_HANDLER_CHANNEL_ID=your_error_handler_channel_id # Role ID
 GUILD_ID=your_guild_id # For error handler purposes
 ```
 
-## Usage
+## 📁 locales (`Work with multiple languages`)
 
-- **Commands:** Customize the bot commands in the commands directory.
-- **Events:** Handle Discord events in the events directory.
-- **Database:** Use the models directory to define your MongoDB schemas.
-- **Error handler channel:** `uncaughtException` and `unhandledRejection` will be notified in your personal `discord-channel`
+This method will use `locale` to find the Guilds preferred language, if the bot can't find it it will use `en_US` as default language. And `t` is the function that will locate the message that needs to be sent.
 
-  ## Example commands:
-
-- `/testButton` <br>
-  <img src="https://i.imgur.com/TK2f5eW.png">
-- `/testModal` <br>
-  <img src="https://i.imgur.com/jGcKKAQ.png">
-- `/testSelect` <br>
-  <img src="https://i.imgur.com/3kuYbMz.png">
-
-## 📁 locales (`Add multiple languages to your bot`)
-
-The variables you will have to use around your code:
-
-- `t`: This will import the translate function from `translate.js`
-- `locale`: This will detect the server's preferred language. **Note that this only works if the server has the Community feature enabled**; otherwise, it defaults to `en_US`. You can modify this behavior as needed, such as by adding an option for users to switch between languages.
+> [!IMPORTANT]  
+> This feature is linked to **Community > Server Primary Languege**, if community is disabled the bot wont be able to find `guild.preferredLocale` and will use `en_US` as default everytime. [**Read more**](https://support.discord.com/hc/en-us/articles/360047132851-Enabling-Your-Community-Server#h_01H1W33CQVZCSKQGX9BM602RPP)
 
 ### Example:
 
@@ -93,7 +74,10 @@ const t = require("./src/utils/translate");
 const locale = guild.preferredLocale || "en_US";
 
 const embed = new EmbedBuilder()
+  // Title defined at both "en_US" and "es_ES" json files
   .setTitle(t(locale, "embeds.exampleTitle"))
+
+  // Description defined at both "en_US" and "es_ES" json files
   .setDescription(
     t(locale, "embeds.exampleDescription", {
       userID: interaction.user.id,
@@ -121,22 +105,14 @@ const embed = new EmbedBuilder()
 }
 ```
 
-In this example, if the embed is triggered in a server where "English" is selected as the preferred language, it will use the first option (`en_US`) for translation. However, if "Spanish" is selected, it will use `es_ES` instead. If there is no `es_ES` file available, it will default to `en_US`.
+In this example, if the embed is triggered in a server where "English" is selected as the preferred language(_Server primary language_), it will use the first option (`en_US`) for translation. However, if "Spanish" is selected, it will use `es_ES` instead. If there is no `es_ES` file available, it will default to `en_US`.
 
-### Example with the `/testButton` command.
-
-<img src="https://i.imgur.com/dynX26p_d.webp?maxwidth=760&fidelity=grand">
-
-## Dependencies
-
-- `discord.js`: For interacting with the Discord API.
-- `dotenv`: For loading environment variables from a .env file.
-- `pm2`: For process management.
+> [!WARNING]  
+> If you don't keep language files up to date some messages will give errores like showing the translation path instead of the actual message.
 
 ## Contributing
 
-> [!NOTE] > **¡Im a Trainee**
-> Any help or TIPs are welcome. Keep in mind that this is just a template for general-purpose bots; it has to be versatile , efficient, and lightweight. With that said , feel free to fork this repository and submit pull requests. **Contributions are welcome!** :D
+> [!NOTE] > **Im still learning**, Any help or TIPs are welcome. Keep in mind that this is just a template for general-purpose bots; it has to be versatile , efficient, and lightweight. With that said , feel free to fork this repository and submit pull requests. **Contributions are welcome!** :D
 
 ## License
 

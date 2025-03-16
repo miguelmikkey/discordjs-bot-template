@@ -1,17 +1,25 @@
+// Module to work with file and directory paths
 const path = require("path");
+
+// Load environment variables from .env file
 require("dotenv").config();
+
+// File system module for reading files
 const fs = require("fs");
-// Translation function
+
+// (UTILS) Load the translation module from the utils folder
 const t = require("./src/utils/translate");
 
+// (UTILS)
+const { loadFiles } = require("./src/utils/loadFiles");
+
+// Loading required classes and constants from discord.js
 const {
   Client,
   GatewayIntentBits,
   Collection,
-  MessageFlags,
   ActivityType,
   Partials,
-  Locale,
 } = require("discord.js");
 
 // Import the error handlers module
@@ -30,126 +38,53 @@ const client = new Client({
   partials: [Partials.Channel],
 });
 
-// Initialize collections for commands and interactions
+// Initialize collections for commands and interactions (buttons, select menus, modals)
 client.commands = new Collection();
 client.buttonHandlers = new Collection();
 client.menuHandlers = new Collection();
 client.modalHandlers = new Collection();
 
-/**
- * Dynamically loads commands from the specified folder.
- *
- * @param {string} dir - The directory to load commands from.
- */
-const loadCommands = (dir) => {
-  const files = fs.readdirSync(dir, { withFileTypes: true });
-  for (const file of files) {
-    const fullPath = path.join(dir, file.name);
-    if (file.isDirectory()) {
-      loadCommands(fullPath);
-    } else if (file.name.endsWith(".js")) {
-      const command = require(fullPath);
-      if (command.data && command.execute) {
-        client.commands.set(command.data.name, command);
-      }
-    }
+// Loading commands from the commands folder
+loadFiles(path.join(__dirname, "src/commands"), (filePath) => {
+  const command = require(filePath);
+  if (command.data && command.execute) {
+    client.commands.set(command.data.name, command);
   }
-};
+});
 
-loadCommands(path.join(__dirname, "src/commands"));
-
-/**
- * Dynamically loads events from the specified folder.
- *
- * @param {string} dir - The directory to load events from.
- */
-const loadEvents = (dir) => {
-  const files = fs.readdirSync(dir, { withFileTypes: true });
-  for (const file of files) {
-    const fullPath = path.join(dir, file.name);
-    if (file.isDirectory()) {
-      loadEvents(fullPath);
-    } else if (file.name.endsWith(".js")) {
-      const event = require(fullPath);
-      if (event.name && typeof event.execute === "function") {
-        // Pass the client as the first argument for each event
-        client.on(event.name, event.execute.bind(null, client));
-      }
-    }
+// Loading events from the events folder
+loadFiles(path.join(__dirname, "src/events"), (filePath) => {
+  const event = require(filePath);
+  if (event.name && typeof event.execute === "function") {
+    client.on(event.name, event.execute.bind(null, client));
   }
-};
+});
 
-loadEvents(path.join(__dirname, "src/events"));
-
-/**
- * Dynamically loads button interaction handlers.
- *
- * @param {string} dir - The directory to load button handlers from.
- */
-const loadButtonHandlers = (dir) => {
-  const files = fs.readdirSync(dir, { withFileTypes: true });
-  for (const file of files) {
-    const fullPath = path.join(dir, file.name);
-    if (file.isDirectory()) {
-      loadButtonHandlers(fullPath);
-    } else if (file.name.endsWith(".js")) {
-      const handler = require(fullPath);
-      if (handler.customId && typeof handler.execute === "function") {
-        client.buttonHandlers.set(handler.customId, handler);
-      }
-    }
+// Loading button handlers from the interactions/buttons folder
+loadFiles(path.join(__dirname, "src/interactions/buttons"), (filePath) => {
+  const handler = require(filePath);
+  if (handler.customId && typeof handler.execute === "function") {
+    client.buttonHandlers.set(handler.customId, handler);
   }
-};
+});
 
-loadButtonHandlers(path.join(__dirname, "src/interactions/buttons"));
-
-/**
- * Dynamically loads select menu interaction handlers.
- *
- * @param {string} dir - The directory to load select menu handlers from.
- */
-const loadMenuHandlers = (dir) => {
-  const files = fs.readdirSync(dir, { withFileTypes: true });
-  for (const file of files) {
-    const fullPath = path.join(dir, file.name);
-    if (file.isDirectory()) {
-      loadMenuHandlers(fullPath);
-    } else if (file.name.endsWith(".js")) {
-      const handler = require(fullPath);
-      if (handler.customId && typeof handler.execute === "function") {
-        client.menuHandlers.set(handler.customId, handler);
-      }
-    }
+// Loading select menu handlers from the interactions/selectMenus folder
+loadFiles(path.join(__dirname, "src/interactions/selectMenus"), (filePath) => {
+  const handler = require(filePath);
+  if (handler.customId && typeof handler.execute === "function") {
+    client.menuHandlers.set(handler.customId, handler);
   }
-};
+});
 
-loadMenuHandlers(path.join(__dirname, "src/interactions/selectMenus"));
-
-/**
- * Dynamically loads modal interaction handlers.
- *
- * @param {string} dir - The directory to load modal handlers from.
- */
-const loadModalHandlers = (dir) => {
-  const files = fs.readdirSync(dir, { withFileTypes: true });
-  for (const file of files) {
-    const fullPath = path.join(dir, file.name);
-    if (file.isDirectory()) {
-      loadModalHandlers(fullPath);
-    } else if (file.name.endsWith(".js")) {
-      const handler = require(fullPath);
-      if (handler.customId && typeof handler.execute === "function") {
-        client.modalHandlers.set(handler.customId, handler);
-      }
-    }
+// Loading modal handlers from the interactions/modals folder
+loadFiles(path.join(__dirname, "src/interactions/modals"), (filePath) => {
+  const handler = require(filePath);
+  if (handler.customId && typeof handler.execute === "function") {
+    client.modalHandlers.set(handler.customId, handler);
   }
-};
+});
 
-loadModalHandlers(path.join(__dirname, "src/interactions/modals"));
-
-/**
- * "ready" event: runs when the client is fully ready.
- */
+// Event listener for when the bot is ready
 client.once("ready", async () => {
   try {
     console.log(`✅ Bot connected as: ${client.user.tag}`);
@@ -158,6 +93,7 @@ client.once("ready", async () => {
     const commandsData = client.commands.map((command) =>
       command.data.toJSON()
     );
+    // If the bot is in a development guild, register commands there instead of globally (for testing)
     if (process.env.DEV_GUILD_ID) {
       const guild = client.guilds.cache.get(process.env.GUILD_ID);
       if (!guild) {
@@ -190,11 +126,14 @@ client.once("ready", async () => {
   }
 });
 
-// Global error handling
+// (ErrorHandler on Discord guild) <== Check GUIDE.md for more information
+// Log unhandled promise rejections
 process.on("unhandledRejection", (error) => {
   console.error("Unhandled promise rejection:", error);
 });
 
+// (ErrorHandler on Discord guild) <== Check GUIDE.md for more information
+// Log uncaught exceptions
 process.on("uncaughtException", (error) => {
   console.error("Uncaught exception:", error);
 });
