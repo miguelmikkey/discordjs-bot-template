@@ -13,6 +13,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("testmodal")
     .setDescription("Tests the example modal interaction"),
+  enabled: true,
+
   async execute(interaction) {
     // Get the guild's preferred locale
     const locale = interaction.guild.preferredLocale || "en_US";

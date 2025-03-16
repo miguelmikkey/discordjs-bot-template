@@ -11,6 +11,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("testselect")
     .setDescription("Tests the example select menu interaction"),
+  enabled: true,
+
   async execute(interaction) {
     // Get the guild's preferred locale
     const locale = interaction.guild.preferredLocale || "en_US";

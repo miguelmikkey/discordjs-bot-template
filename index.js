@@ -47,6 +47,10 @@ client.modalHandlers = new Collection();
 // Loading commands from the commands folder
 loadFiles(path.join(__dirname, "src/commands"), (filePath) => {
   const command = require(filePath);
+
+  // Skip disabled commands
+  if (command.enabled === false) return;
+
   if (command.data && command.execute) {
     client.commands.set(command.data.name, command);
   }
@@ -117,7 +121,7 @@ client.once("ready", async () => {
       activities: [
         { name: "discord-bot-template", type: ActivityType.Playing },
       ],
-      status: "dnd",
+      status: "dnd", // online, idle, dnd, invisible
     });
 
     console.log("✅ Bot is ready.");
