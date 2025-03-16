@@ -13,8 +13,8 @@
 
 </div>
 
-> [!CAUTION]
-> **THIS REPOSITORY IS NOT FINISHED YET AND MAY CONTAIN ERRORS OR MISSING INFORMATION**, once the first version is available, it will be published as a `release`.
+<!-- > [!CAUTION]
+> **THIS REPOSITORY IS NOT FINISHED YET AND MAY CONTAIN ERRORS OR MISSING INFORMATION**, once the first version is available, it will be published as a `release`. -->
 
 This repository contains a basic template for creating Discord bots using `discord.js`, `pm2` for process management and `.env` for environment variable configuration.
 
