@@ -25,8 +25,9 @@
 - Generate the invite URL and use it to add your bot to your Discord server.
 - Extended guide for this part [**here**](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links) 🚨
 
-### 3. Clone the Repository 📥
-- Clone the template repository to your local machine.
+### 3. Download latest release or Clone the Repository 📥
+- Download latest release [here](https://github.com/miguelmikkey/discordjs-bot-template/releases/)
+- (Optional) Clone the template repository to your local machine if you plan on working or improve it.
 ```bash
 git clone https://github.com/miguelmikkey/discordjs-bot-template.git
 cd <repo_folder>
