@@ -1,25 +1,25 @@
-// Module to work with file and directory paths
-const path = require("path");
-
-// Load environment variables from .env file
+// dotenv is a package that allows you to load environment variables from a .env file into process.env
 require("dotenv").config();
 
-// (UTILS)
-const { loadFiles } = require("./src/utils/loadFiles");
+// import colorize from src/assets/colors.js (for console.log colors)
+const { colorize } = require("./src/assets/colors");
 
-// Loading required classes and constants from discord.js
 const {
   Client,
   GatewayIntentBits,
   Collection,
-  ActivityType,
   Partials,
 } = require("discord.js");
 
-// Import the error handlers module
-const { registerErrorHandlers } = require("./src/events/errorNotification");
+// import initHandlers from src/handlers/index.js
+const { initHandlers } = require("./src/handlers");
 
-// Create a new Discord client instance
+// import registerSlashCommands from src/handlers/registerCommands.js
+const { registerSlashCommands } = require("./src/handlers/registerCommands");
+
+// config file
+const config = require("./src/config/config");
+
 const client = new Client({
   intents: [
     GatewayIntentBits.GuildPresences,
@@ -40,109 +40,65 @@ const client = new Client({
   ],
 });
 
-// Initialize collections for commands and interactions (buttons, select menus, modals)
+// initialize collections for commands, buttonHandlers, menuHandlers, and modalHandlers
 client.commands = new Collection();
 client.buttonHandlers = new Collection();
 client.menuHandlers = new Collection();
 client.modalHandlers = new Collection();
 
-// Loading commands from the commands folder
-loadFiles(path.join(__dirname, "src/commands"), (filePath) => {
-  const command = require(filePath);
+// load handlers from src/handlers/index.js (commands, events, interactions, etc.)
+initHandlers(client);
 
-  // Skip disabled commands
-  if (command.enabled === false) return;
-
-  if (command.data && command.execute) {
-    client.commands.set(command.data.name, command);
-  }
-});
-
-// Loading events from the events folder
-loadFiles(path.join(__dirname, "src/events"), (filePath) => {
-  const event = require(filePath);
-  if (event.name && typeof event.execute === "function") {
-    client.on(event.name, event.execute.bind(null, client));
-  }
-});
-
-// Loading button handlers from the interactions/buttons folder
-loadFiles(path.join(__dirname, "src/interactions/buttons"), (filePath) => {
-  const handler = require(filePath);
-  if (handler.customId && typeof handler.execute === "function") {
-    client.buttonHandlers.set(handler.customId, handler);
-  }
-});
-
-// Loading select menu handlers from the interactions/selectMenus folder
-loadFiles(path.join(__dirname, "src/interactions/selectMenus"), (filePath) => {
-  const handler = require(filePath);
-  if (handler.customId && typeof handler.execute === "function") {
-    client.menuHandlers.set(handler.customId, handler);
-  }
-});
-
-// Loading modal handlers from the interactions/modals folder
-loadFiles(path.join(__dirname, "src/interactions/modals"), (filePath) => {
-  const handler = require(filePath);
-  if (handler.customId && typeof handler.execute === "function") {
-    client.modalHandlers.set(handler.customId, handler);
-  }
-});
-
-// Event listener for when the bot is ready
 client.once("ready", async () => {
   try {
-    console.log(`✅ Bot connected as: ${client.user.tag}`);
-
-    // Register slash commands with Discord
-    const commandsData = client.commands.map((command) =>
-      command.data.toJSON()
+    // just some random console logs :)
+    console.log(
+      `${colorize().green}[app] ${colorize().white}Client connected:${
+        colorize().blue
+      } ${client.user.tag}${colorize().reset}`
     );
-    // If the bot is in a development guild, register commands there instead of globally (for testing)
-    if (process.env.DEV_GUILD_ID) {
-      const guild = client.guilds.cache.get(process.env.DEV_GUILD_ID);
-      if (!guild) {
-        console.warn(
-          "Development guild not found. Make sure the bot is in the guild specified by DEV_GUILD_ID."
-        );
-      } else {
-        await guild.commands.set(commandsData);
-        console.log("✅ Slash commands registered in the development guild.");
-      }
-    } else {
-      await client.application.commands.set(commandsData);
-      console.log("✅ Slash commands registered globally.");
-    }
+    // another one...
+    console.log(
+      `${colorize().yellow}[app] ${
+        colorize().white
+      }Registering slash commands...${colorize().reset}`
+    );
+    // Register slash commands on the client (/src/handlers/registerCommands.js)
+    await registerSlashCommands(client);
 
-    // Register error handlers once the client is ready
-    registerErrorHandlers(client, process.env.ERROR_HANDLER_CHANNEL_ID);
+    // Set the bot's presence from the config file
+    client.user.setPresence(config.presence);
 
-    // Set the bot's presence
-    client.user.setPresence({
-      activities: [
-        { name: "discord-bot-template", type: ActivityType.Playing },
-      ],
-      status: "dnd", // online, idle, dnd, invisible
-    });
-
-    console.log("✅ Bot is ready.");
+    // And another one...
+    console.log(
+      `${colorize().green}[app] ${colorize().white}Bot is ready!${
+        colorize().reset
+      }`
+    );
   } catch (error) {
-    console.error("Error during client initialization:", error);
+    console.error(
+      `${colorize().red}[error] Error during bot start${colorize().reset}`,
+      error
+    );
   }
 });
 
-// (ErrorHandler on Discord guild) <== Check GUIDE.md for more information
-// Log unhandled promise rejections
+// Global error handlers
 process.on("unhandledRejection", (error) => {
-  console.error("Unhandled promise rejection:", error);
+  console.log(
+    `${colorize().red}[error] An unhandled rejection was found:${
+      colorize().reset
+    }`
+  );
+  console.error(error);
 });
-
-// (ErrorHandler on Discord guild) <== Check GUIDE.md for more information
-// Log uncaught exceptions
 process.on("uncaughtException", (error) => {
+  console.log(
+    `${colorize().red}[error] An Uncaught exception was found:${
+      colorize().reset
+    }`
+  );
   console.error("Uncaught exception:", error);
 });
 
-// Log in to Discord using the token from .env
 client.login(process.env.DISCORD_TOKEN);
