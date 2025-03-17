@@ -9,7 +9,7 @@ module.exports = {
   apps: [
     {
       name: name,
-      script: "index.js",
+      script: "app.js",
       exec_mode: "fork",
       instances: 1,
       restart_delay: 1000,
