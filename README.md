@@ -13,8 +13,10 @@
 
 </div>
 
-<!-- > [!CAUTION]
-> **THIS REPOSITORY IS NOT FINISHED YET AND MAY CONTAIN ERRORS OR MISSING INFORMATION**, once the first version is available, it will be published as a `release`. -->
+> [!CAUTION]
+> **This repository is the one I personally use as a template for my projects.** Please exercise caution and review the code before using it, as it is modified whenever I need to improve or implement something and may not correspond to the latest release. For better stability, always use the [**latest release**](https://github.com/miguelmikkey/discordjs-bot-template/releases/).
+
+
 
 This repository contains a basic template for creating Discord bots using `discord.js`, `pm2` for process management and `.env` for environment variable configuration.
 

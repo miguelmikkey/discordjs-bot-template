@@ -45,7 +45,6 @@ npm install
 ```bash
 # General variables
 DISCORD_TOKEN=your_discord_bot_token
-CLIENT_ID=your_bot_id
 DEV_GUILD_ID=your_dev_guild_id # For command propagation and error handling purposes
 
 # Optional variables
