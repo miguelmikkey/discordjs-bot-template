@@ -28,8 +28,16 @@ const client = new Client({
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions,
   ],
-  partials: [Partials.Channel],
+  partials: [
+    Partials.Channel,
+    Partials.Message,
+    Partials.Reaction,
+    Partials.User,
+    Partials.GuildMember,
+    Partials.ThreadMember,
+  ],
 });
 
 // Initialize collections for commands and interactions (buttons, select menus, modals)
