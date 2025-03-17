@@ -1,6 +1,6 @@
 <div style="text-align:center" align="center">
 
-# Discord.js Bot template | 2025✅
+# Discord.js Bot template | 2025 ✅
 
 <a href="https://discordjs.guide/" target="_blank">![Static Badge](https://img.shields.io/badge/DiscordJS-guide-379C6F)</a>
 ![discordjsversion](https://img.shields.io/badge/discord.js-^14.18.0-5865f2)
@@ -53,7 +53,7 @@ This template contains a **versatile** design so you can create **your own** bot
 - Use default **prettier** settings. *(ignore `.md` files)*
 - Write clear and descriptive **commit messages**. Each commit should explain the purpose of the change succinctly.
 - **Update and maintain documentation** for any new features or changes. Contributions should include clear explanations of functionality, configuration, and usage examples.
-- **Provide tests for new features when applicable**. Contributions should not break existing functionality, and ideally, they come with added unit or integration tests.
+- **Provide tests for new features when applicable**. Contributions should not break existing functionality.
 
 > [!NOTE]
 > **Im a trainee developer**, Any help or TIPs are welcome. Keep in mind that this is just a template for general-purpose bots; it has to be versatile , efficient, and lightweight. With that said , feel free to fork this repository and submit pull requests. **Contributions are welcome!**
