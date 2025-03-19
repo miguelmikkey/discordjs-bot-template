@@ -19,6 +19,7 @@
   "homepage": "https://github.com/miguelmikkey/discordjs-bot-template#readme",
   "dependencies": {
     "discord.js": "^14.18.0",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "mongoose": "^8.12.1"
   }
 }
