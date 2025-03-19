@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 const { colorize } = require("../assets/colors");
+const config = require("../config/config");
 
-/**
- * Inicializa la conexión a la base de datos y devuelve el objeto de configuración
- * @returns {Promise<Object>} Objeto con información de la base de datos para asignar a client.database
- */
 async function initDatabase() {
   // Verificar si la base de datos está habilitada
   if (!isDatabaseEnabled()) {
@@ -47,7 +44,7 @@ async function connectToMongoDB() {
         colorize().white
       }Connecting to MongoDB...${colorize().reset}`
     );
-    const mongoURI = process.env.MONGO_URI;
+    const mongoURI = config.MONGO_URI;
 
     if (!mongoURI) {
       // Si no se proporciona MONGO_URI, registrar una advertencia y retornar
@@ -100,7 +97,7 @@ async function connectToMongoDB() {
 
 // Función auxiliar para verificar si la base de datos está habilitada
 function isDatabaseEnabled() {
-  return process.env.DATABASE_ENABLED !== "false";
+  return config.DBENABLED !== "false";
 }
 
 module.exports = { connectToMongoDB, isDatabaseEnabled, initDatabase };
