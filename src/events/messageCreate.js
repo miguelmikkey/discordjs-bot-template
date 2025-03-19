@@ -3,7 +3,7 @@ const { ChannelType } = require("discord.js");
 
 module.exports = {
   name: "messageCreate",
-  execute: async (message) => {
+  execute: async (client, message) => {
     try {
       // Ignore messages from bots to prevent loops
       if (message.author.bot) return;
