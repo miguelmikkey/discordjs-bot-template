@@ -1,4 +1,5 @@
 const { MessageFlags } = require("discord.js");
+const { isDatabaseAvailable } = require("../database/mongoose");
 
 module.exports = {
   name: "interactionCreate",
@@ -15,6 +16,16 @@ module.exports = {
           console.warn(`⚠️ Command not found: ${interaction.commandName}`);
           return;
         }
+
+        // Check if the command requires a database connection and if it's available
+        if (command.requirements?.database && !isDatabaseAvailable(client)) {
+          return await interaction.reply({
+            content:
+              "this command requires a database connection, but the database is not available.",
+            flags: MessageFlags.Ephemeral,
+          });
+        }
+
         await command.execute(interaction);
 
         /*
