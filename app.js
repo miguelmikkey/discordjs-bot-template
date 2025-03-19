@@ -17,6 +17,9 @@ const { initHandlers } = require("./src/handlers");
 // import registerSlashCommands from src/handlers/registerCommands.js
 const { registerSlashCommands } = require("./src/handlers/registerCommands");
 
+// import MongoDB connection from src/database/mongoose.js
+const { initDatabase } = require("./src/database/mongoose");
+
 // config file
 const config = require("./src/config/config");
 
@@ -57,6 +60,10 @@ client.once("ready", async () => {
         colorize().blue
       } ${client.user.tag}${colorize().reset}`
     );
+
+    // Inicializar la base de datos y asignar resultado al cliente
+    client.database = await initDatabase();
+
     // another one...
     console.log(
       `${colorize().yellow}[app] ${
