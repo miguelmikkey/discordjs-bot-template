@@ -34,6 +34,7 @@ This repository contains a basic template for creating Discord bots using `disco
 - **Prerequisites and dependencies**<br>
     - `node.js` - version 18 or newer **required** 🚨
     - `discord.js` - version 14.18.0 or newer **require** 🚨
+    - `mongoose` - version 8.12.1 or newer **require** 🚨
     - `dotenv` - not required but **recommended**
     - `pm2` - not required but **recommended**
         - `npm install pm2 -g` *to install it globally*
@@ -61,6 +62,8 @@ This template contains a **versatile** design so you can create **your own** bot
 > **Im a trainee developer**, Any help or TIPs are welcome. Keep in mind that this is just a template for general-purpose bots; it has to be versatile , efficient, and lightweight. With that said , feel free to fork this repository and submit pull requests. **Contributions are welcome!**
 
 ## Useful docs 📚
+- [Mongoose docs](https://mongoosejs.com/docs/) *MongoDB*
+- [PM2 docs](https://pm2.keymetrics.io/docs/usage/quick-start/)
 - [PermissionFlags](https://discord-api-types.dev/api/discord-api-types-v10#PermissionFlagsBits)
 - [SlashCommands](https://discordjs.guide/slash-commands/response-methods.html)
 - [EmbedBuilder](https://discordjs.guide/popular-topics/embeds.html)

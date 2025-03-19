@@ -47,6 +47,10 @@ npm install
 DISCORD_TOKEN=your_discord_bot_token
 DEV_GUILD_ID=your_dev_guild_id # For command propagation and error handling purposes
 
+# Database variables (Optional incase you need a database)
+DATABASE_ENABLED=false 
+MONGO_URI=
+
 # Optional variables
 ERROR_HANDLER_MENTION_ID=the_role_you_want_to_be_mentioned
 ERROR_HANDLER_CHANNEL_ID=your_error_handler_channel_id
