@@ -12,6 +12,9 @@ module.exports = {
     .setName("testselect")
     .setDescription("Tests the example select menu interaction"),
   enabled: true,
+  requirements: {
+    database: false,
+  },
 
   async execute(interaction) {
     // Get the guild's preferred locale

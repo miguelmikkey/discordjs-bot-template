@@ -13,6 +13,9 @@ module.exports = {
     .setName("testbutton")
     .setDescription("Tests the example button interaction"),
   enabled: true,
+  requirements: {
+    database: false,
+  },
 
   async execute(interaction) {
     // Get the guild's preferred locale

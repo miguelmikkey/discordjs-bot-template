@@ -14,6 +14,9 @@ module.exports = {
     .setName("testmodal")
     .setDescription("Tests the example modal interaction"),
   enabled: true,
+  requirements: {
+    database: false,
+  },
 
   async execute(interaction) {
     // Get the guild's preferred locale
