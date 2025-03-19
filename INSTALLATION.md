@@ -40,7 +40,11 @@ cd <repo_folder>
 npm install
 ```
 
-### 5. Configure Environment Variables 📝
+### 5. (OPTIONAL) Create your MongoDB database 💾
+This step is optional and is only required if you think your bot might use a database in the future. If you want some useful information about MongoDB and Mongoose, keep reading:
+- [Getting Started with MongoDB & Mongoose](https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/)
+
+### 6. Configure Environment Variables 📝
 - Create a `.env` file in the root directory or rename de existing `.env.example` to `.env`.
 ```bash
 # General variables
@@ -56,7 +60,7 @@ ERROR_HANDLER_MENTION_ID=the_role_you_want_to_be_mentioned
 ERROR_HANDLER_CHANNEL_ID=your_error_handler_channel_id
 ```
 
-### 6. Run the Bot 🏃
+### 7. Run the Bot 🏃
 - Once you have everything ready try and start your bot using:
 ```bash
 node index.js
@@ -65,7 +69,7 @@ nodemon index.js
 ```
 Check [**nodemon**](https://www.npmjs.com/package/nodemon) for an easier development experience.
 
-### 7. Test the Bot 🤖
+### 8. Test the Bot 🤖
 - If the bot is online and has the required permissions, you can go ahead and test a few commands to see if everything is running well.
     - available commands: `/testButton`, `/testModal`, `/testSelect`
 
@@ -79,5 +83,5 @@ setTimeout(() => {
 A message should be sent at the channel defined at `.env` > `ERROR_HANDLER_CHANNEL_ID`.
 <img src="https://i.imgur.com/22s3AKF.png">
 
-### 8. Congrats you have a bot! 😄
+### 9. Congrats you have a bot! 😄
 - If you found this repository useful, please **consider giving it a star ⭐** on GitHub. Your support helps to improve the project and encourages further contributions!
