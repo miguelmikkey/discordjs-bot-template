@@ -1,8 +1,9 @@
+// Check ChannelTypes: https://discord.js.org/docs/packages/discord.js/14.18.0/ChannelType:Enum
 const { ChannelType } = require("discord.js");
 
 module.exports = {
   name: "messageCreate",
-  execute: async (client, message) => {
+  execute: async (message) => {
     try {
       // Ignore messages from bots to prevent loops
       if (message.author.bot) return;
