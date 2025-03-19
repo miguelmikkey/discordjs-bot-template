@@ -6,6 +6,19 @@ function isDatabaseEnabled() {
   return process.env.DATABASE_ENABLED !== "false";
 }
 
+// this is for things that require a database connection (like commands)
+function isDatabaseAvailable(client) {
+  // check if the client and client.database exists
+  if (!client || !client.database) {
+    return false;
+  }
+
+  // check if the database is enabled and the connection is not null
+  return (
+    client.database.enabled === true && client.database.connection !== null
+  );
+}
+
 async function initDatabase() {
   // check if the database is enabled from .env file
   if (!isDatabaseEnabled()) {
@@ -99,4 +112,9 @@ async function connectToMongoDB() {
   }
 }
 
-module.exports = { connectToMongoDB, isDatabaseEnabled, initDatabase };
+module.exports = {
+  connectToMongoDB,
+  isDatabaseEnabled,
+  initDatabase,
+  isDatabaseAvailable,
+};
