@@ -3,6 +3,8 @@ const { ActivityType } = require("discord.js");
 
 module.exports = {
   BOT_TOKEN: process.env.DISCORD_TOKEN,
+  MONGO_URI: process.env.MONGO_URI,
+  DBENABLED: process.DATABASE_ENABLED,
   presence: {
     status: "dnd",
     activities: [
