@@ -4,7 +4,11 @@ module.exports = {
   name: "interactionCreate",
   execute: async (client, interaction) => {
     try {
-      // Check if the interaction is a slash command (chat input command)
+      /*
+       * Check if the interaction is a command
+       * If it is, execute the command from ./src/commands/${interaction.commandName}.js
+       * dynamic commands are nonsense so we don't need to check for them
+       */
       if (interaction.isChatInputCommand()) {
         const command = client.commands.get(interaction.commandName);
         if (!command) {
@@ -13,41 +17,81 @@ module.exports = {
         }
         await command.execute(interaction);
 
-        // Check if the interaction is a button click
+        /*
+         * Check if the interaction is a button
+         * If it is, execute the button handler from ./src/interactions/buttons/${interaction.customId}.js
+         * Dynamic button handlers can be used by setting the customId to a base command name
+         * example of a dynamic button handler: customId = "exampleButton_1"
+         * incase your bot generates multiple buttons with different customIds with the same base command
+         */
       } else if (interaction.isButton()) {
-        const handler = client.buttonHandlers.get(interaction.customId);
+        const fullCustomId = interaction.customId;
+        let handler = client.buttonHandlers.get(fullCustomId);
+        if (!handler) {
+          const baseCommand = fullCustomId.split("_")[0];
+          if (baseCommand !== fullCustomId) {
+            handler = client.buttonHandlers.get(baseCommand);
+          }
+        }
+
         if (handler) {
-          await handler.execute(interaction);
+          await handler.execute(interaction, fullCustomId);
         } else {
-          console.warn(`No handler found for button: ${interaction.customId}`);
+          console.warn(`No handler found for button: ${fullCustomId}`);
           await interaction.reply({
             content: "No handler found for this button.",
             flags: MessageFlags.Ephemeral,
           });
         }
 
-        // Check if the interaction is a select menu submission
+        /*
+         * Check if the interaction is a select menu
+         * If it is, execute the select menu handler from ./src/interactions/selectMenus/${interaction.customId}.js
+         * Dynamic select menu handlers can be used by setting the customId to a base command name
+         * example of a dynamic select menu handler: customId = "exampleSelectMenu_1"
+         * incase your bot generates multiple select menus with different customIds with the same base command
+         */
       } else if (interaction.isStringSelectMenu()) {
-        const handler = client.menuHandlers.get(interaction.customId);
+        const fullCustomId = interaction.customId;
+        let handler = client.menuHandlers.get(fullCustomId);
+
+        if (!handler) {
+          const baseCommand = fullCustomId.split("_")[0];
+          if (baseCommand !== fullCustomId) {
+            handler = client.menuHandlers.get(baseCommand);
+          }
+        }
         if (handler) {
-          await handler.execute(interaction);
+          await handler.execute(interaction, fullCustomId);
         } else {
-          console.warn(
-            `No handler found for select menu: ${interaction.customId}`
-          );
+          console.warn(`No handler found for select menu: ${fullCustomId}`);
           await interaction.reply({
             content: "No handler found for this select menu.",
             flags: MessageFlags.Ephemeral,
           });
         }
 
-        // Check if the interaction is a modal submission
+        /*
+         * Check if the interaction is a modal submit
+         * If it is, execute the modal handler from ./src/interactions/modals/${interaction.customId}.js
+         * Dynamic modal handlers can be used by setting the customId to a base command name
+         * example of a dynamic modal handler: customId = "exampleModal_1"
+         * incase your bot generates multiple modals with different customIds with the same base command
+         * thanks copilot for the comments :)
+         */
       } else if (interaction.isModalSubmit()) {
-        const handler = client.modalHandlers.get(interaction.customId);
+        const fullCustomId = interaction.customId;
+        let handler = client.modalHandlers.get(fullCustomId);
+        if (!handler) {
+          const baseCommand = fullCustomId.split("_")[0];
+          if (baseCommand !== fullCustomId) {
+            handler = client.modalHandlers.get(baseCommand);
+          }
+        }
         if (handler) {
-          await handler.execute(interaction);
+          await handler.execute(interaction, fullCustomId);
         } else {
-          console.warn(`No handler found for modal: ${interaction.customId}`);
+          console.warn(`No handler found for modal: ${fullCustomId}`);
           await interaction.reply({
             content: "No handler found for this modal.",
             flags: MessageFlags.Ephemeral,
