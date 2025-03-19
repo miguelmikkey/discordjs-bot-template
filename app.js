@@ -61,7 +61,7 @@ client.once("ready", async () => {
       } ${client.user.tag}${colorize().reset}`
     );
 
-    // Inicializar la base de datos y asignar resultado al cliente
+    // initialize the database connection
     client.database = await initDatabase();
 
     // another one...
