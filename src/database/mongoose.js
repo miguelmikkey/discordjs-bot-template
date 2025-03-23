@@ -56,18 +56,11 @@ async function initDatabase() {
 
 async function connectToMongoDB() {
   try {
-    // Get shard ID for logging
-    const shardId =
-      global.client && global.client.shard
-        ? `Shard #${global.client.shard.ids[0]}`
-        : "Unsharded";
-
     console.log(
       `${colorize().yellow}[database] ${
         colorize().white
-      }${shardId} connecting to MongoDB...${colorize().reset}`
+      }Connecting to MongoDB...${colorize().reset}`
     );
-
     const mongoURI = process.env.MONGO_URI;
 
     if (!mongoURI) {
@@ -82,44 +75,19 @@ async function connectToMongoDB() {
       return { status: "error", connection: null };
     }
 
-    // Add optimal connection settings for sharded environment
-    const connectionOptions = {
-      // Connection pool settings
-      maxPoolSize: 10, // Increase this as you add more shards
-      minPoolSize: 3, // Maintain minimum connections for faster responses
-
-      // Timeouts
-      connectTimeoutMS: 10000, // 10 seconds connection timeout
-      socketTimeoutMS: 45000, // 45 seconds socket timeout
-
-      // Reconnection settings
-      serverSelectionTimeoutMS: 5000, // Server selection timeout
-      heartbeatFrequencyMS: 10000, // Check server health every 10 seconds
-
-      // Application information (helpful for monitoring)
-      appName: `DiscordBot${
-        global.client?.shard ? `-Shard${global.client.shard.ids[0]}` : ""
-      }`,
-
-      // Other useful settings
-      retryWrites: true,
-      retryReads: true,
-    };
-
-    await mongoose.connect(mongoURI, connectionOptions);
+    await mongoose.connect(mongoURI);
 
     console.log(
-      `${colorize().green}[database] ${
-        colorize().white
-      }${shardId} connected to MongoDB${colorize().reset}`
+      `${colorize().green}[database] ${colorize().white}Connected to MongoDB${
+        colorize().reset
+      }`
     );
 
-    // Set up more robust event listeners
     mongoose.connection.on("error", (error) => {
       console.error(
         `${colorize().red}[database] ${
           colorize().white
-        }${shardId} error connecting to MongoDB:${colorize().reset}`,
+        }Error connecting to MongoDB:${colorize().reset}`,
         error
       );
     });
@@ -128,36 +96,7 @@ async function connectToMongoDB() {
       console.log(
         `${colorize().yellow}[database] ${
           colorize().white
-        }${shardId} disconnected from MongoDB${colorize().reset}`
-      );
-
-      // Attempt to reconnect (optional, as mongoose has built-in reconnection)
-      setTimeout(() => {
-        if (mongoose.connection.readyState === 0) {
-          console.log(
-            `${colorize().yellow}[database] ${
-              colorize().white
-            }${shardId} attempting to reconnect to MongoDB...${
-              colorize().reset
-            }`
-          );
-          mongoose.connect(mongoURI, connectionOptions).catch((err) => {
-            console.error(
-              `${colorize().red}[database] ${
-                colorize().white
-              }Reconnection failed:${colorize().reset}`,
-              err
-            );
-          });
-        }
-      }, 5000);
-    });
-
-    mongoose.connection.on("reconnected", () => {
-      console.log(
-        `${colorize().green}[database] ${
-          colorize().white
-        }${shardId} reconnected to MongoDB${colorize().reset}`
+        }Disconnected from MongoDB${colorize().reset}`
       );
     });
 
@@ -173,24 +112,9 @@ async function connectToMongoDB() {
   }
 }
 
-// For checking database performance (optional but useful)
-async function getDatabaseStats() {
-  if (!mongoose.connection || mongoose.connection.readyState !== 1) {
-    return null;
-  }
-
-  try {
-    return await mongoose.connection.db.stats();
-  } catch (error) {
-    console.error("Error getting database stats:", error);
-    return null;
-  }
-}
-
 module.exports = {
   connectToMongoDB,
   isDatabaseEnabled,
   initDatabase,
   isDatabaseAvailable,
-  getDatabaseStats, // Export the new function
 };

@@ -3,10 +3,6 @@ const { SlashCommandBuilder } = require("discord.js");
 // importing the UserPoints model
 const UserPoints = require("../database/models/UserPoints");
 
-// I skipped the translation function for this example
-// so its easier to understand the code
-// const t = require("../../src/utils/translate");
-
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("testdb")
@@ -36,7 +32,6 @@ module.exports = {
         )
     ),
   enabled: true,
-  guildOnly: false,
   requirements: {
     database: true, // require a database connection to run this command
   },

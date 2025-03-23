@@ -50,7 +50,6 @@ This step is optional and is only required if you think your bot might use a dat
 # General variables
 DISCORD_TOKEN=your_discord_bot_token
 DEV_GUILD_ID=your_dev_guild_id # For command propagation and error handling purposes
-CLIENT_ID=your_bot_client_id
 
 # Database variables (Optional incase you need a database)
 DATABASE_ENABLED=false 
