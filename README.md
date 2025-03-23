@@ -16,6 +16,9 @@
 > [!CAUTION]
 > **This repository is the one I personally use as a template for my projects.** Please exercise caution and review the code before using it, as it is modified whenever I need to improve or implement something and may not correspond to the latest release. For better stability, always use the [**latest release**](https://github.com/miguelmikkey/discordjs-bot-template/releases/).
 
+> [!CAUTION]
+> **SHARDS WARNING:** added ShardManager but still testing it, use latest release for stable version! **README.md outdated** till next release!
+
 
 
 This repository contains a basic template for creating Discord bots using `discord.js`, `pm2` for process management and `.env` for environment variable configuration.
