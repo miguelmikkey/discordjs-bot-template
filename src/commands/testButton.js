@@ -13,6 +13,7 @@ module.exports = {
     .setName("testbutton")
     .setDescription("Tests the example button interaction"),
   enabled: true,
+  guildOnly: false,
   requirements: {
     database: false,
   },

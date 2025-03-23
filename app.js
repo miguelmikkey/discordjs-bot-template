@@ -41,7 +41,10 @@ const client = new Client({
     Partials.GuildMember,
     Partials.ThreadMember,
   ],
+  shards: "auto", // Tell the client to respect the sharding manager's settings
 });
+
+global.client = client;
 
 // initialize collections for commands, buttonHandlers, menuHandlers, and modalHandlers
 client.commands = new Collection();
@@ -54,37 +57,66 @@ initHandlers(client);
 
 client.once("ready", async () => {
   try {
-    // just some random console logs :)
+    // Add shard information to the log
+    const shardId = client.shard ? client.shard.ids[0] : "Unsharded";
     console.log(
-      `${colorize().green}[app] ${colorize().white}Client connected:${
-        colorize().blue
-      } ${client.user.tag}${colorize().reset}`
+      `${colorize().green}[app] ${
+        colorize().white
+      }Shard #${shardId} connected:${colorize().blue} ${client.user.tag}${
+        colorize().reset
+      }`
     );
 
     // initialize the database connection
     client.database = await initDatabase();
 
-    // another one...
-    console.log(
-      `${colorize().yellow}[app] ${
-        colorize().white
-      }Registering slash commands...${colorize().reset}`
-    );
-    // Register slash commands on the client (/src/handlers/registerCommands.js)
-    await registerSlashCommands(client);
+    // Only register slash commands from one shard (shard 0) to avoid rate limits
+    if (!client.shard || client.shard.ids.includes(0)) {
+      console.log(
+        `${colorize().yellow}[app] ${
+          colorize().white
+        }Registering slash commands from shard #${shardId}...${
+          colorize().reset
+        }`
+      );
+      // Register slash commands on the client (/src/handlers/registerCommands.js)
+      await registerSlashCommands(client);
+    }
 
     // Set the bot's presence from the config file
     client.user.setPresence(config.presence);
 
-    // And another one...
+    // Log that this shard is ready
     console.log(
-      `${colorize().green}[app] ${colorize().white}Bot is ready!${
-        colorize().reset
-      }`
+      `${colorize().green}[app] ${colorize().white}Shard ${
+        colorize().brightBlue
+      }#${shardId}${colorize().white} is ready!${colorize().reset}`
     );
+
+    // Get total server count across all shards
+    if (client.shard) {
+      try {
+        const guildCounts = await client.shard.fetchClientValues(
+          "guilds.cache.size"
+        );
+        const totalGuildCount = guildCounts.reduce(
+          (acc, count) => acc + count,
+          0
+        );
+        console.log(
+          `${colorize().blue}[stats] ${colorize().white}Bot is in ${
+            colorize().yellow
+          }${totalGuildCount}${colorize().white} servers across all shards${
+            colorize().reset
+          }`
+        );
+      } catch (e) {
+        console.error("Error fetching guild counts:", e);
+      }
+    }
   } catch (error) {
     console.error(
-      `${colorize().red}[error] Error during bot start${colorize().reset}`,
+      `${colorize().red}[error] Error during shard start${colorize().reset}`,
       error
     );
   }
@@ -92,18 +124,21 @@ client.once("ready", async () => {
 
 // Global error handlers
 process.on("unhandledRejection", (error) => {
+  const shardId = client.shard ? client.shard.ids[0] : "Unsharded";
   console.log(
-    `${colorize().red}[error] An unhandled rejection was found:${
-      colorize().reset
-    }`
+    `${colorize().red}[error] ${
+      colorize().white
+    }Shard #${shardId}: An unhandled rejection was found:${colorize().reset}`
   );
   console.error(error);
 });
+
 process.on("uncaughtException", (error) => {
+  const shardId = client.shard ? client.shard.ids[0] : "Unsharded";
   console.log(
-    `${colorize().red}[error] An Uncaught exception was found:${
-      colorize().reset
-    }`
+    `${colorize().red}[error] ${
+      colorize().white
+    }Shard #${shardId}: An Uncaught exception was found:${colorize().reset}`
   );
   console.error("Uncaught exception:", error);
 });

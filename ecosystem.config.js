@@ -9,7 +9,7 @@ module.exports = {
   apps: [
     {
       name: name,
-      script: "app.js",
+      script: "index.js",
       exec_mode: "fork",
       instances: 1,
       restart_delay: 1000,
@@ -20,7 +20,7 @@ module.exports = {
 
       ignore_watch: ["./logs", ".node_modules", ".vscode"],
       version: version,
-      max_memory_restart: "512M",
+      max_memory_restart: "512M", // this will restart the bot if it uses more than 512MB of memory
 
       // You must have a logs folder in the root of your project
       // for this to work, or change the path to your own
