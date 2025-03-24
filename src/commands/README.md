@@ -33,13 +33,10 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("template")
     .setDescription("This is a template command."),
-
-  // Enable or disable a command, disabled commands will not be registered
-  // and will not be available to use in the Discord server.
-  // If "enabled" is not defined, the command will be enabled by default
   enabled: false,
+  devGuildOnly: true,
   requirements: {
-    database: false, // require a database connection to run this command
+    database: false,
   },
 
   async execute(interaction) {
@@ -49,6 +46,7 @@ module.exports = {
   },
 };
 ```
-- `enabled` set to `true` or `false` for this command to be handled or not.
+- **`enabled`:** if set to `false` the command will be skipped on registering and handling.
 
-- `database` set to true or false incase this command requires a `database` connection to work.
+- **`database`:** if set to `true` this command will require a `MongoDB` connection to work, if a connection is not stablished the command will not be handled.
+- **`devGuildOnly:`** if set to `true` this command will only be registered on the `DEV_GUILD_ID` from `.env`, this **DOES NOT** mean it can't be used by other users, it means it will only be registered there, to hide it from others in the dev guild you must apply [`permissions`](https://discord.js.org/docs/packages/builders/1.10.1/SlashCommandBuilder:Class#setDefaultMemberPermissions) to that command.

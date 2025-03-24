@@ -12,6 +12,7 @@ module.exports = {
     .setName("testselect")
     .setDescription("Tests the example select menu interaction"),
   enabled: true,
+  devGuildOnly: true,
   requirements: {
     database: false,
   },

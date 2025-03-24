@@ -32,6 +32,7 @@ module.exports = {
         )
     ),
   enabled: true,
+  devGuildOnly: true,
   requirements: {
     database: true, // require a database connection to run this command
   },

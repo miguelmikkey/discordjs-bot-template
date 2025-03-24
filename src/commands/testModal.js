@@ -14,6 +14,7 @@ module.exports = {
     .setName("testmodal")
     .setDescription("Tests the example modal interaction"),
   enabled: true,
+  devGuildOnly: true,
   requirements: {
     database: false,
   },

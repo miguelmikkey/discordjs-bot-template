@@ -9,6 +9,7 @@ module.exports = {
   // and will not be available to use in the Discord server.
   // If "enabled" is not defined, the command will be enabled by default
   enabled: false,
+  devGuildOnly: true,
   requirements: {
     database: false, // require a database connection to run this command
   },
