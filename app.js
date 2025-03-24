@@ -76,7 +76,7 @@ client.once("ready", async () => {
     // Set the bot's presence from the config file
     client.user.setPresence(config.presence);
 
-    // And another one...
+    // and another one...
     console.log(
       `${colorize().green}[app] ${colorize().white}Bot is ready!${
         colorize().reset
@@ -90,22 +90,70 @@ client.once("ready", async () => {
   }
 });
 
-// Global error handlers
-process.on("unhandledRejection", (error) => {
-  console.log(
-    `${colorize().red}[error] An unhandled rejection was found:${
-      colorize().reset
-    }`
-  );
-  console.error(error);
+// Global error handlers (src/utils/{discordErrorCodes.js, errorHandlers.js})
+process.on("unhandledRejection", async (error) => {
+  if (
+    error &&
+    error.code &&
+    Object.keys(require("./src/utils/discordErrorCodes").ERROR_CODES).includes(
+      error.code.toString()
+    )
+  ) {
+    console.log(
+      `${colorize().yellow}[process] ${
+        colorize().white
+      }Unhandled Discord API error${colorize().reset}`
+    );
+
+    const {
+      getDiscordErrorMessage,
+      getErrorCategory,
+    } = require("./src/utils/discordErrorCodes");
+    console.log(
+      `${colorize().red}[discord:${getErrorCategory(error.code)}] ${
+        colorize().white
+      }${getDiscordErrorMessage(error.code)}${colorize().reset}`
+    );
+  } else {
+    console.log(
+      `${colorize().red}[error] An unhandled rejection was found:${
+        colorize().reset
+      }`
+    );
+    console.error(error);
+  }
 });
-process.on("uncaughtException", (error) => {
-  console.log(
-    `${colorize().red}[error] An Uncaught exception was found:${
-      colorize().reset
-    }`
-  );
-  console.error("Uncaught exception:", error);
+
+process.on("uncaughtException", async (error) => {
+  if (
+    error &&
+    error.code &&
+    Object.keys(require("./src/utils/discordErrorCodes").ERROR_CODES).includes(
+      error.code.toString()
+    )
+  ) {
+    console.log(
+      `${colorize().yellow}[process] ${
+        colorize().white
+      }Unhandled Discord API error${colorize().reset}`
+    );
+    const {
+      getDiscordErrorMessage,
+      getErrorCategory,
+    } = require("./src/utils/discordErrorCodes");
+    console.log(
+      `${colorize().red}[discord:${getErrorCategory(error.code)}] ${
+        colorize().white
+      }${getDiscordErrorMessage(error.code)}${colorize().reset}`
+    );
+  } else {
+    console.log(
+      `${colorize().red}[error] An Uncaught exception was found:${
+        colorize().reset
+      }`
+    );
+    console.error("Uncaught exception:", error);
+  }
 });
 
 client.login(process.env.DISCORD_TOKEN);

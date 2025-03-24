@@ -14,4 +14,10 @@ const errorHandlerEmbed = (client, title, messageData) => {
     .setTimestamp();
 };
 
-module.exports = { errorHandlerEmbed };
+const regularErrorEmbed = (description) => {
+  return new EmbedBuilder()
+    .setColor(getColor("error"))
+    .setDescription(description);
+};
+
+module.exports = { errorHandlerEmbed, regularErrorEmbed };

@@ -1,5 +1,8 @@
 const { MessageFlags } = require("discord.js");
 const { isDatabaseAvailable } = require("../database/mongoose");
+const { colorize } = require("../assets/colors");
+const { regularErrorEmbed } = require("../assets/embeds");
+const { handleDiscordError } = require("../utils/errorHandler");
 
 module.exports = {
   name: "interactionCreate",
@@ -110,18 +113,25 @@ module.exports = {
         }
       }
     } catch (error) {
-      console.error("Error in interactionCreate event:", error);
-      // If the interaction has already been deferred or replied to, send a follow-up message
-      if (interaction.deferred || interaction.replied) {
-        await interaction.followUp({
-          content: "There was an error processing the interaction.",
-          flags: MessageFlags.Ephemeral,
-        });
-      } else {
-        await interaction.reply({
-          content: "There was an error processing the interaction.",
-          flags: MessageFlags.Ephemeral,
-        });
+      // Try to handle with our Discord error handler first
+      const wasHandled = await handleDiscordError(error, interaction);
+
+      // If the error was not a Discord API error or couldn't be handled, use generic error handling
+      if (!wasHandled) {
+        console.error("Error in interactionCreate event:", error);
+
+        // If the interaction has already been deferred or replied to, send a follow-up message
+        if (interaction.deferred || interaction.replied) {
+          await interaction.followUp({
+            content: "There was an error processing the interaction.",
+            flags: MessageFlags.Ephemeral,
+          });
+        } else {
+          await interaction.reply({
+            content: "There was an error processing the interaction.",
+            flags: MessageFlags.Ephemeral,
+          });
+        }
       }
     }
   },
