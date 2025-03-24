@@ -49,6 +49,7 @@ This step is optional and is only required if you think your bot might use a dat
 ```bash
 # General variables
 DISCORD_TOKEN=your_discord_bot_token
+CLIENT_ID=your_discord_bot_client_id
 DEV_GUILD_ID=your_dev_guild_id # For command propagation and error handling purposes
 
 # Database variables (Optional incase you need a database)
@@ -56,25 +57,28 @@ DATABASE_ENABLED=false
 MONGO_URI=
 
 # Optional variables
-ERROR_HANDLER_MENTION_ID=the_role_you_want_to_be_mentioned
 ERROR_HANDLER_CHANNEL_ID=your_error_handler_channel_id
+ERROR_HANDLER_MENTION_ID=the_role_you_want_to_be_mentioned
 ```
 
 ### 7. Run the Bot 🏃
 - Once you have everything ready try and start your bot using:
 ```bash
-node index.js
+node app.js
 # or if you have nodemon
-nodemon index.js
+nodemon app.js
 ```
 Check [**nodemon**](https://www.npmjs.com/package/nodemon) for an easier development experience.
+
+Your console should look like this:
+<img src="https://i.imgur.com/4h73e9S.png">
 
 ### 8. Test the Bot 🤖
 - If the bot is online and has the required permissions, you can go ahead and test a few commands to see if everything is running well.
     - available commands: `/testButton`, `/testModal`, `/testSelect`
 
 - (Optional) Test **error handling** by intentionally triggering errors.<br>
-e.g.: Add this code at the end of your `index.js` to create an `UncaughtException` error.
+e.g.: Add this code at the end of your `app.js` to create an `UncaughtException` error.
 ```js
 setTimeout(() => {
   throw new Error("Test uncaught exception");
