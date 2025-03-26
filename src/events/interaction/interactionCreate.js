@@ -1,8 +1,8 @@
 const { MessageFlags } = require("discord.js");
-const { isDatabaseAvailable } = require("../database/mongoose");
-const { colorize } = require("../assets/colors");
-const { regularErrorEmbed } = require("../assets/embeds");
-const { handleDiscordError } = require("../utils/errorHandler");
+const { isDatabaseAvailable } = require("../../database/mongoose");
+const { colorize } = require("../../assets/colors");
+const { regularErrorEmbed } = require("../../assets/embeds");
+const { handleDiscordError } = require("../../utils/errorHandler");
 
 module.exports = {
   name: "interactionCreate",

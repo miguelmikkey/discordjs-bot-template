@@ -39,7 +39,7 @@ function registerInteractions(client) {
   // console logs for loaded interactions (buttons, select menus, modals)
   // you can remove them if you want, is just to visualize the loaded interactions
   console.log(
-    `${colorize().green}[handlers]${colorize().white} Loading buttons: ${
+    `${colorize().green}[handlers]🔎${colorize().white} Watching buttons: ${
       colorize().reset
     }` +
       loadedButtons
@@ -48,7 +48,7 @@ function registerInteractions(client) {
   );
 
   console.log(
-    `${colorize().green}[handlers]${colorize().white} Loading selectMenus: ${
+    `${colorize().green}[handlers]🔎${colorize().white} Watching selectMenus: ${
       colorize().reset
     }` +
       loadedSelectMenus
@@ -57,7 +57,7 @@ function registerInteractions(client) {
   );
 
   console.log(
-    `${colorize().green}[handlers]${colorize().white} Loading modals: ${
+    `${colorize().green}[handlers]🔎${colorize().white} Watching modals: ${
       colorize().reset
     }` +
       loadedModals

@@ -28,7 +28,7 @@ async function registerSlashCommands(client) {
 
   // Log the command counts for clarity
   console.log(
-    `${colorize().yellow}[commands] ${colorize().white}Registering ${
+    `${colorize().yellow}[commands]🔄 ${colorize().white}Registering ${
       colorize().yellow
     }${devOnlyCommands.length}${colorize().white} dev-only commands and ${
       colorize().yellow
@@ -42,7 +42,7 @@ async function registerSlashCommands(client) {
     const guild = client.guilds.cache.get(process.env.DEV_GUILD_ID);
     if (!guild) {
       console.warn(
-        `${colorize().yellow}[warning] ${
+        `${colorize().yellow}[warning]⚠️ ${
           colorize().white
         }Development guild not found. Dev-only commands cannot be registered.${
           colorize().reset
@@ -59,7 +59,7 @@ async function registerSlashCommands(client) {
       await guild.commands.set(devOnlyCommands);
 
       console.log(
-        `${colorize().green}[commands] ${colorize().white}Registered ${
+        `${colorize().green}[commands]✅ ${colorize().white}Registered ${
           colorize().yellow
         }${devOnlyCommands.length}${
           colorize().white
@@ -72,7 +72,7 @@ async function registerSlashCommands(client) {
   if (globalCommands.length > 0) {
     await client.application.commands.set(globalCommands);
     console.log(
-      `${colorize().green}[commands] ${colorize().white}Registered ${
+      `${colorize().green}[commands]✅ ${colorize().white}Registered ${
         colorize().yellow
       }${globalCommands.length}${colorize().white} commands globally${
         colorize().reset
@@ -80,7 +80,7 @@ async function registerSlashCommands(client) {
     );
   } else {
     console.log(
-      `${colorize().green}[commands] ${colorize().white}Registered ${
+      `${colorize().green}[commands]✅ ${colorize().white}Registered ${
         colorize().yellow
       }${globalCommands.length}${colorize().white} commands globally${
         colorize().reset

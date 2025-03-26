@@ -1,4 +1,4 @@
-const { colorize } = require("../assets/colors");
+const { colorize } = require("../../assets/colors");
 module.exports = {
   name: "guildCreate",
   execute: async (client, guild) => {

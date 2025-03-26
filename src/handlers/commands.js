@@ -19,7 +19,7 @@ function registerCommands(client) {
   // console logs for loaded commands
   // you can remove it if you want, is just to visualize the loaded commands
   console.log(
-    `${colorize().green}[handlers]${colorize().white} Loading commands: ${
+    `${colorize().green}[handlers]🔎${colorize().white} Watching commands: ${
       colorize().reset
     }` +
       loadedCommands

@@ -23,9 +23,9 @@ async function initDatabase() {
   // check if the database is enabled from .env file
   if (!isDatabaseEnabled()) {
     console.log(
-      `${colorize().brightBlack}[database] ${
-        colorize().white
-      }Database connection disabled${colorize().reset}`
+      `${
+        colorize().brightBlack
+      }[database] database connection disabled in ".env"${colorize().reset}`
     );
     return {
       enabled: false,
@@ -57,9 +57,9 @@ async function initDatabase() {
 async function connectToMongoDB() {
   try {
     console.log(
-      `${colorize().yellow}[database] ${
-        colorize().white
-      }Connecting to MongoDB...${colorize().reset}`
+      `${colorize().yellow}[database]🔄 ${colorize().white}Connecting...${
+        colorize().reset
+      }`
     );
     const mongoURI = process.env.MONGO_URI;
 
@@ -78,7 +78,7 @@ async function connectToMongoDB() {
     await mongoose.connect(mongoURI);
 
     console.log(
-      `${colorize().green}[database] ${colorize().white}Connected to MongoDB${
+      `${colorize().green}[database]✅ ${colorize().white}Connected to MongoDB${
         colorize().reset
       }`
     );

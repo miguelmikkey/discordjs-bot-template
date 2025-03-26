@@ -32,10 +32,10 @@ client.login('YOUR_BOT_TOKEN');
 - [discord.js.org/docs/packages/discord.js/14.18.0/Events:Enum](https://discord.js.org/docs/packages/discord.js/14.18.0/Events:Enum)
 
 ### 3. Examples provided
-In this repository you'll find `interactionCreate`, `messageCreate`, `guildCreate` and `guildDelete` as examples.
+In this repository you'll find `interaction/interactionCreate.js`, `message/messageCreate.js`, `guild/guildCreate.js` and `guild/guildDelete.js` as examples.
 
 - `interactionCreate`: Listens to **Buttons**, **SlashCommands**, **Modals** and **SelectMenus**...*so is very important*.
-- `messageCreate`: This event is fired whenever a new message is sent in a channel the bot has access to, allowing it to process or respond to user messages.
+- `messageCreate`: This event is fired whenever a new message is sent in a channel the bot has access to(*inlcudes bot dms*), allowing it to process or respond to user messages.
 <br>
 <br>
-...*The other two are not that important but can be useful to control guilds etc*
+...*you get the idea*

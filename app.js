@@ -56,7 +56,7 @@ client.once("ready", async () => {
   try {
     // just some random console logs :)
     console.log(
-      `${colorize().green}[app] ${colorize().white}Client connected:${
+      `${colorize().green}[app]${colorize().white}✅ Client connected:${
         colorize().blue
       } ${client.user.tag}${colorize().reset}`
     );
@@ -66,9 +66,9 @@ client.once("ready", async () => {
 
     // another one...
     console.log(
-      `${colorize().yellow}[app] ${
+      `${colorize().yellow}[app]${
         colorize().white
-      }Registering slash commands...${colorize().reset}`
+      }🔄 Registering slash commands...${colorize().reset}`
     );
     // Register slash commands on the client (/src/handlers/registerCommands.js)
     await registerSlashCommands(client);
@@ -78,7 +78,7 @@ client.once("ready", async () => {
 
     // and another one...
     console.log(
-      `${colorize().green}[app] ${colorize().white}Bot is ready!${
+      `${colorize().green}[app]✅ ${colorize().white}Bot is ready! 😃${
         colorize().reset
       }`
     );
