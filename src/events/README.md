@@ -39,3 +39,15 @@ In this repository you'll find `interaction/interactionCreate.js`, `message/mess
 <br>
 <br>
 ...*you get the idea*
+
+```js
+// Event template example
+module.exports = {
+  name: "EVENT_NAME_HERE", // This could be guildCreate
+  execute: async (client, etc...) => {
+
+    // Your code here 
+
+  },
+};
+```

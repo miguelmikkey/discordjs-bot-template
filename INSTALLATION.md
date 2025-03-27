@@ -72,7 +72,7 @@ Check [**nodemon**](https://www.npmjs.com/package/nodemon) for an easier develop
 
 Your console should look like this:
 <img src="https://i.imgur.com/4h73e9S.png">
-
+***Don't worry if you see other logs, this output can change as the bot is updated***
 ### 8. Test the Bot 🤖
 - If the bot is online and has the required permissions, you can go ahead and test a few commands to see if everything is running well.
     - available commands: `/testButton`, `/testModal`, `/testSelect`
