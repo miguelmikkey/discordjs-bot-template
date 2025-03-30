@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const { colorize } = require("../assets/colors");
+const config = require("../config/config");
 
 // check if the database is enabled directly from environment variables
 function isDatabaseEnabled() {
-  return process.env.DATABASE_ENABLED !== "false";
+  return config.DBENABLED !== "false";
 }
 
 // this is for things that require a database connection (like commands)
@@ -61,7 +62,7 @@ async function connectToMongoDB() {
         colorize().reset
       }`
     );
-    const mongoURI = process.env.MONGO_URI;
+    const mongoURI = config.MONGO_URI;
 
     if (!mongoURI) {
       // if mongouri is not provided, log an error and return

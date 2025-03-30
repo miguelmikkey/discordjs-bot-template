@@ -51,3 +51,6 @@ module.exports = {
   },
 };
 ```
+
+> [!NOTE]
+> **Events are separated into categories but you can drop events in the root directory events/~ and they will still be handled good.**

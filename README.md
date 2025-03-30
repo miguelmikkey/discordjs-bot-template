@@ -29,6 +29,19 @@ This repository contains a basic template for creating Discord bots using `disco
 - [**locales**](https://github.com/miguelmikkey/discordjs-bot-template/tree/main/locales/README.md) folder. Theres nothing like supporting multiple languages if you want your bot to be popular, more information about how to use this below.
 - *And much more!*
 
+## To-Do List 📝
+- [x] Base template
+- [x] Slash commands handlers
+- [x] Structured event handlers
+- [ ] Finished installation guide
+- [x] MongoDB setup + examples
+- [x] Better looking error handlers
+- [x] `locale` to support multiple languages
+- [ ] setup `sharding` for future growth
+- [ ] Support server with test bot
+- [ ] `README.md` files on each dir to explain it
+- [x] `Error handling` notification on discord server
+
 ## Get started 😃
 - **Prerequisites and dependencies**<br>
     - `node.js` - version 18 or newer **required** 🚨
