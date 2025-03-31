@@ -2,6 +2,7 @@ const {
   SlashCommandBuilder,
   ActionRowBuilder,
   StringSelectMenuBuilder,
+  MessageFlags,
 } = require("discord.js");
 
 // Import the translate function
@@ -50,6 +51,7 @@ module.exports = {
     await interaction.reply({
       content: t(locale, "commands.testSelectMenu"),
       components: [row],
+      flags: MessageFlags.Ephemeral,
     });
   },
 };
