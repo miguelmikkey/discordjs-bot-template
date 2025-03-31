@@ -35,13 +35,13 @@ This repository contains a basic template for creating Discord bots using `disco
 - [x] Structured event handlers
 - [x] Command options (cooldowns, devonly, database, ...)
 - [x] Separate every command in categories
-- [ ] Finished installation guide
+- [x] Finished installation guide
 - [x] MongoDB setup + examples
 - [x] Better looking error handlers
 - [x] `locale` to support multiple languages
 - [ ] Sharding support for scalability purposes
 - [x] [Support server](http://discord.com/invite/dmVMDnm5df) with test bot
-- [ ] `README.md` files on each dir to explain it
+- [x] `README.md` files on each dir to explain it
 - [x] `Error handling` notification on discord server
 
 ## Get started 😃

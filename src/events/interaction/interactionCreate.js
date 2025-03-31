@@ -101,9 +101,24 @@ module.exports = {
         const fullCustomId = interaction.customId;
         let handler = client.buttonHandlers.get(fullCustomId);
         if (!handler) {
+          // First try the existing base command extraction
           const baseCommand = fullCustomId.split("_")[0];
           if (baseCommand !== fullCustomId) {
             handler = client.buttonHandlers.get(baseCommand);
+          }
+
+          // If still no handler, try regex patterns
+          if (!handler) {
+            // Check all button handlers for regex patterns
+            for (const [id, handlerObj] of client.buttonHandlers.entries()) {
+              if (
+                handlerObj.pattern &&
+                new RegExp(handlerObj.pattern).test(fullCustomId)
+              ) {
+                handler = handlerObj;
+                break;
+              }
+            }
           }
         }
 
@@ -129,11 +144,27 @@ module.exports = {
         let handler = client.menuHandlers.get(fullCustomId);
 
         if (!handler) {
+          // First try the existing base command extraction
           const baseCommand = fullCustomId.split("_")[0];
           if (baseCommand !== fullCustomId) {
             handler = client.menuHandlers.get(baseCommand);
           }
+
+          // If still no handler, try regex patterns
+          if (!handler) {
+            // Check all menu handlers for regex patterns
+            for (const [id, handlerObj] of client.menuHandlers.entries()) {
+              if (
+                handlerObj.pattern &&
+                new RegExp(handlerObj.pattern).test(fullCustomId)
+              ) {
+                handler = handlerObj;
+                break;
+              }
+            }
+          }
         }
+
         if (handler) {
           await handler.execute(interaction, fullCustomId);
         } else {
@@ -156,11 +187,27 @@ module.exports = {
         const fullCustomId = interaction.customId;
         let handler = client.modalHandlers.get(fullCustomId);
         if (!handler) {
+          // First try the existing base command extraction
           const baseCommand = fullCustomId.split("_")[0];
           if (baseCommand !== fullCustomId) {
             handler = client.modalHandlers.get(baseCommand);
           }
+
+          // If still no handler, try regex patterns
+          if (!handler) {
+            // Check all modal handlers for regex patterns
+            for (const [id, handlerObj] of client.modalHandlers.entries()) {
+              if (
+                handlerObj.pattern &&
+                new RegExp(handlerObj.pattern).test(fullCustomId)
+              ) {
+                handler = handlerObj;
+                break;
+              }
+            }
+          }
         }
+
         if (handler) {
           await handler.execute(interaction, fullCustomId);
         } else {
