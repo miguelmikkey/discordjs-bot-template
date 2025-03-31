@@ -35,5 +35,19 @@
     "selectMenus": {
       "exampleSelectMenu": "Has seleccionado: {option}"
     }
+  },
+  "interactionCreate": {
+    "commandDisabled": "Este comando está actualmente desactivado. Por favor, vuelve más tarde.",
+    "commandMaintenance": "Este comando está actualmente en mantenimiento. Por favor, inténtalo más tarde.",
+    "databaseRequired": "Este comando requiere una conexión a la base de datos, pero la base de datos no está disponible.",
+    "nsfwRequired": "Este comando solo puede ser utilizado en canales NSFW.",
+    "cooldown": "Por favor, espera `{time}s` antes de usar el comando `{command}` de nuevo.",
+    "noButtonHandler": "No se encontró un manejador para este botón.",
+    "noMenuHandler": "No se encontró un manejador para este menú de selección.",
+    "noModalHandler": "No se encontró un manejador para este modal.",
+    "interactionError": "Hubo un error al procesar la interacción."
+  },
+  "messageCreate": {
+    "dmResponse": "Hey, esto es una respuesta de DM. ¡Espero que estés teniendo un buen día! 😊"
   }
 }

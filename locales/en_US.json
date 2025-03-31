@@ -35,5 +35,19 @@
     "selectMenus": {
       "exampleSelectMenu": "You selected: {option}"
     }
+  },
+  "interactionCreate": {
+    "commandDisabled": "This command is currently disabled. Please check back later.",
+    "commandMaintenance": "This command is currently under maintenance. Please try again later.",
+    "databaseRequired": "This command requires a database connection, but the database is not available.",
+    "nsfwRequired": "This command can only be used in NSFW channels.",
+    "cooldown": "Please wait `{time}s` before using the `{command}` command again.",
+    "noButtonHandler": "No handler found for this button.",
+    "noMenuHandler": "No handler found for this select menu.",
+    "noModalHandler": "No handler found for this modal.",
+    "interactionError": "There was an error processing the interaction."
+  },
+  "messageCreate": {
+    "dmResponse": "Hey, this is a DM response. Hope you're having a great day! 😊"
   }
 }

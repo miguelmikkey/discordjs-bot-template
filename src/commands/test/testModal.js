@@ -7,7 +7,7 @@ const {
 } = require("discord.js");
 
 // Import the translate function
-const t = require("../utils/translate");
+const t = require("../../utils/translate");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,9 +15,10 @@ module.exports = {
     .setDescription("Tests the example modal interaction"),
   enabled: true,
   devGuildOnly: true,
-  requirements: {
-    database: false,
-  },
+  database: false,
+  cooldown: 5,
+  nsfw: false,
+  maintenance: false,
 
   async execute(interaction) {
     // Get the guild's preferred locale

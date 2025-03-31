@@ -40,6 +40,7 @@ async function registerSlashCommands(client) {
   // Register dev-only commands to dev guild if DEV_GUILD_ID exists
   if (process.env.DEV_GUILD_ID && devOnlyCommands.length > 0) {
     const guild = client.guilds.cache.get(process.env.DEV_GUILD_ID);
+
     if (!guild) {
       console.warn(
         `${colorize().yellow}[warning]⚠️ ${
@@ -49,22 +50,24 @@ async function registerSlashCommands(client) {
         }`
       );
     } else {
-      // Get existing guild commands and filter out dev-only commands
-      const existingCommands = await guild.commands.fetch();
-      const existingDevOnlyIds = existingCommands
-        .filter((cmd) => !globalCommands.some((gcmd) => gcmd.name === cmd.name))
-        .map((cmd) => cmd.id);
+      try {
+        // Register the dev-only commands directly
+        await guild.commands.set(devOnlyCommands);
 
-      // Register the dev-only commands
-      await guild.commands.set(devOnlyCommands);
-
-      console.log(
-        `${colorize().green}[commands]✅ ${colorize().white}Registered ${
-          colorize().yellow
-        }${devOnlyCommands.length}${
-          colorize().white
-        } dev-only commands in development guild${colorize().reset}`
-      );
+        console.log(
+          `${colorize().green}[commands]✅ ${colorize().white}Registered ${
+            colorize().yellow
+          }${devOnlyCommands.length}${
+            colorize().white
+          } dev-only commands in development guild${colorize().reset}`
+        );
+      } catch (error) {
+        console.error(
+          `${colorize().red}[error]❌ ${
+            colorize().white
+          }Failed to register dev commands: ${error.message}${colorize().reset}`
+        );
+      }
     }
   }
 

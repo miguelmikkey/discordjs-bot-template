@@ -20,4 +20,10 @@ const regularErrorEmbed = (description) => {
     .setDescription(description);
 };
 
-module.exports = { errorHandlerEmbed, regularErrorEmbed };
+const WarningEmbed = (description) => {
+  return new EmbedBuilder()
+    .setColor(getColor("warning"))
+    .setDescription(description);
+};
+
+module.exports = { errorHandlerEmbed, regularErrorEmbed, WarningEmbed };

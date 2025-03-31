@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("discord.js");
 
 // importing the UserPoints model
-const UserPoints = require("../database/models/UserPoints");
+const UserPoints = require("../../database/models/UserPoints");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -33,9 +33,10 @@ module.exports = {
     ),
   enabled: true,
   devGuildOnly: true,
-  requirements: {
-    database: true, // require a database connection to run this command
-  },
+  database: true,
+  cooldown: 5,
+  nsfw: false,
+  maintenance: false,
 
   async execute(interaction) {
     // defer the reply to ensure the interaction does not time out

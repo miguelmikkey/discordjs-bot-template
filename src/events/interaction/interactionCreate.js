@@ -1,10 +1,16 @@
 const { MessageFlags } = require("discord.js");
 const { isDatabaseAvailable } = require("../../database/mongoose");
 const { handleDiscordError } = require("../../utils/errorHandler");
+const { handleCooldown } = require("../../handlers/cooldown");
+const { regularErrorEmbed, WarningEmbed } = require("../../assets/embeds");
+const t = require("../../utils/translate");
 
 module.exports = {
   name: "interactionCreate",
   execute: async (client, interaction) => {
+    // Get the user's locale from the interaction
+    const locale = interaction.guild.preferredLocale || "en_US";
+
     try {
       /*
        * Check if the interaction is a command
@@ -18,13 +24,68 @@ module.exports = {
           return;
         }
 
-        // Check if the command requires a database connection and if it's available
-        if (command.requirements?.database && !isDatabaseAvailable(client)) {
+        // Check if command is disabled (enabled: false)
+        if (command.enabled === false) {
+          const embedDisabled = WarningEmbed(
+            t(locale, "interactionCreate.commandDisabled")
+          );
           return await interaction.reply({
-            content:
-              "this command requires a database connection, but the database is not available.",
+            embeds: [embedDisabled],
             flags: MessageFlags.Ephemeral,
           });
+        }
+
+        // Check if command is in maintenance mode
+        if (command.maintenance === true) {
+          const embedMNTCE = WarningEmbed(
+            t(locale, "interactionCreate.commandMaintenance")
+          );
+          return await interaction.reply({
+            embeds: [embedMNTCE],
+            flags: MessageFlags.Ephemeral,
+          });
+        }
+
+        // Check if the command requires a database connection
+        // Use either the new "database" property or fallback to requirements.database
+        const requiresDatabase =
+          command.database ?? command.requirements?.database;
+        if (requiresDatabase && !isDatabaseAvailable(client)) {
+          const embedDB = regularErrorEmbed(
+            t(locale, "interactionCreate.databaseRequired")
+          );
+          return await interaction.reply({
+            embeds: [embedDB],
+            flags: MessageFlags.Ephemeral,
+          });
+        }
+
+        // Check if command requires NSFW channel
+        if (command.nsfw === true && !interaction.channel.nsfw) {
+          const embedNSFW = regularErrorEmbed(
+            t(locale, "interactionCreate.nsfwRequired")
+          );
+          return await interaction.reply({
+            embeds: [embedNSFW],
+            flags: MessageFlags.Ephemeral,
+          });
+        }
+
+        // Check cooldown
+        if (command.cooldown) {
+          const cooldownResult = handleCooldown(command, interaction.user.id);
+          if (cooldownResult.onCooldown) {
+            const embedCD = regularErrorEmbed(
+              t(locale, "interactionCreate.cooldown", {
+                time: cooldownResult.timeLeft,
+                command: interaction.commandName,
+              })
+            );
+            return await interaction.reply({
+              embeds: [embedCD],
+              flags: MessageFlags.Ephemeral,
+            });
+          }
         }
 
         await command.execute(interaction);
@@ -51,7 +112,7 @@ module.exports = {
         } else {
           console.warn(`No handler found for button: ${fullCustomId}`);
           await interaction.reply({
-            content: "No handler found for this button.",
+            content: t(locale, "interactionCreate.noButtonHandler"),
             flags: MessageFlags.Ephemeral,
           });
         }
@@ -78,7 +139,7 @@ module.exports = {
         } else {
           console.warn(`No handler found for select menu: ${fullCustomId}`);
           await interaction.reply({
-            content: "No handler found for this select menu.",
+            content: t(locale, "interactionCreate.noMenuHandler"),
             flags: MessageFlags.Ephemeral,
           });
         }
@@ -105,7 +166,7 @@ module.exports = {
         } else {
           console.warn(`No handler found for modal: ${fullCustomId}`);
           await interaction.reply({
-            content: "No handler found for this modal.",
+            content: t(locale, "interactionCreate.noModalHandler"),
             flags: MessageFlags.Ephemeral,
           });
         }
@@ -121,12 +182,12 @@ module.exports = {
         // If the interaction has already been deferred or replied to, send a follow-up message
         if (interaction.deferred || interaction.replied) {
           await interaction.followUp({
-            content: "There was an error processing the interaction.",
+            content: t(locale, "interactionCreate.interactionError"),
             flags: MessageFlags.Ephemeral,
           });
         } else {
           await interaction.reply({
-            content: "There was an error processing the interaction.",
+            content: t(locale, "interactionCreate.interactionError"),
             flags: MessageFlags.Ephemeral,
           });
         }

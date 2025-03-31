@@ -48,16 +48,19 @@ function registerEvents(client) {
       }
     });
 
+    // console log for loaded events
+    console.log(
+      `${colorize().green}[handlers]${colorize().white}🔎 Watching events: ${
+        colorize().reset
+      }`
+    );
+
     // console log for events by category
     Object.keys(eventsByCategory).forEach((category) => {
       if (eventsByCategory[category].length > 0) {
         console.log(
-          `${colorize().green}[handlers]🔎${
-            colorize().white
-          } Watching ${category} events: ${eventsByCategory[category]
-            .map(
-              (evt) => `${colorize().brightMagenta}${evt}${colorize().reset}`
-            )
+          `- ${colorize().brightBlack}${category}: ${eventsByCategory[category]
+            .map((evt) => `${colorize().brightCyan}${evt}${colorize().reset}`)
             .join(`${colorize().white}, ${colorize().reset}`)}`
         );
       }
