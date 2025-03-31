@@ -32,17 +32,17 @@ This repository contains a basic template for creating Discord bots using `disco
 ## To-Do List 📝
 - [x] Base template
 - [x] Slash commands handlers
-- [x] Structured event handlers
+- [x] Event handlers
+- [x] Interaction handlers
 - [x] Command options (cooldowns, devonly, database, ...)
-- [x] Separate every command in categories
-- [x] Finished installation guide
+- [x] [Installation](https://github.com/miguelmikkey/discordjs-bot-template/blob/main/INSTALLATION.md) guide
 - [x] MongoDB setup + examples
-- [x] Better looking error handlers
 - [x] `locale` to support multiple languages
 - [ ] Sharding support for scalability purposes
-- [x] [Support server](http://discord.com/invite/dmVMDnm5df) with test bot
+- [ ] Support server with test bot
 - [x] `README.md` files on each dir to explain it
 - [x] `Error handling` notification on discord server
+- [ ] `utils` folder filled with utility examples like `embed pagination`, `date formatter`, `validators`, `etc...`
 
 ## Get started 😃
 - **Prerequisites and dependencies**<br>

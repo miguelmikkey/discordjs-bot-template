@@ -10,21 +10,18 @@ function registerInteractions(client) {
       dir: "buttons",
       collection: client.buttonHandlers,
       loaded: [],
-      color: "brightCyan",
     },
     {
       name: "selectMenus",
       dir: "selectMenus",
       collection: client.menuHandlers,
       loaded: [],
-      color: "blue",
     },
     {
       name: "modals",
       dir: "modals",
       collection: client.modalHandlers,
       loaded: [],
-      color: "brightCyan",
     },
   ];
 
@@ -40,16 +37,31 @@ function registerInteractions(client) {
         }
       }
     );
+  });
 
-    // logging loaded interactions
-    console.log(
-      `${colorize().green}[handlers]🔎${colorize().white} Watching ${
-        type.name
-      }: ${colorize().reset}` +
-        type.loaded
-          .map((id) => `${colorize()[type.color]}${id}${colorize().reset}`)
-          .join(`${colorize().white}, ${colorize().reset}`)
-    );
+  // calculate total interactions
+  const totalInteractions = interactionTypes.reduce(
+    (sum, type) => sum + type.loaded.length,
+    0
+  );
+
+  // create consolidated log message
+  console.log(
+    `${colorize().green}[handlers]🔎${colorize().white} Watching ${
+      colorize().brightCyan
+    }${totalInteractions}${colorize().white} interactions:${colorize().reset}`
+  );
+
+  // log each interaction type
+  interactionTypes.forEach((type) => {
+    if (type.loaded.length > 0) {
+      console.log(
+        `- ${colorize().brightBlack}${type.name}: ${colorize().reset}` +
+          type.loaded
+            .map((id) => `${colorize().brightCyan}${id}${colorize().reset}`)
+            .join(`${colorize().white}, ${colorize().reset}`)
+      );
+    }
   });
 }
 

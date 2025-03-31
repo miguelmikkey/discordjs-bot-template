@@ -1,18 +1,17 @@
 <div style="text-align:center" align="center">
 
-# Discord.js Bot template | 2025✅
+# Discord.js Bot template | 2025 ✅
 
 <a href="https://discordjs.guide/" target="_blank">![Static Badge](https://img.shields.io/badge/DiscordJS-guide-379C6F)</a>
 ![discordjsversion](https://img.shields.io/badge/discord.js-^14.18.0-5865f2)
 ![GitHub contributors](https://img.shields.io/github/contributors/miguelmikkey/discordjs-bot-template?color=blue)
-![commits](https://badgen.net/github/commits/miguelmikkey/discordjs-bot-template/)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/miguelmikkey/discordjs-bot-template)
 ![master](https://img.shields.io/github/last-commit/miguelmikkey/discordjs-bot-template/main)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
 ![GitHub Created At](https://img.shields.io/github/created-at/miguelmikkey/discordjs-bot-template)
 ![GitHub Repo stars](https://img.shields.io/github/stars/miguelmikkey/discordjs-bot-template)
 
 </div>
-
 # SlashCommands Guides 🪄  
 ### 1. [Command permissions](https://discordjs.guide/slash-commands/permissions.html#member-permissions)
 - [Bitwise Permission Flags](https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags)

@@ -57,11 +57,14 @@ function registerCommands(client) {
       });
     }
 
-    // Display commands grouped by category
+    // Calculate total commands
+    const totalCommands = loadedCommands.length;
+
+    // Display commands grouped by category with total count
     console.log(
-      `${colorize().green}[handlers]🔎${colorize().white} Watching commands:${
-        colorize().reset
-      }`
+      `${colorize().green}[handlers]🔎${colorize().white} Watching ${
+        colorize().brightCyan
+      }${totalCommands}${colorize().white} commands:${colorize().reset}`
     );
 
     for (const categoryData of client.commandCategories.values()) {
@@ -88,9 +91,11 @@ function registerCommands(client) {
       }
     });
 
-    // The original console log for backward compatibility
+    // The original console log for backward compatibility with total count
     console.log(
-      `${colorize().green}[handlers]🔎${colorize().white} Watching commands: ${
+      `${colorize().green}[handlers]🔎${colorize().white} Watching ${
+        colorize().brightCyan
+      }${loadedCommands.length}${colorize().white} commands: ${
         colorize().reset
       }` +
         loadedCommands
