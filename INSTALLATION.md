@@ -88,4 +88,6 @@ A message should be sent at the channel defined at `.env` > `ERROR_HANDLER_CHANN
 <img src="https://i.imgur.com/22s3AKF.png">
 
 ### 9. Congrats you have a bot! 😄
-- If you found this repository useful, please **consider giving it a star ⭐** on GitHub. Your support helps to improve the project and encourages further contributions!
+If you found this repository useful, please **consider giving it a star ⭐** on GitHub. Your support helps to improve the project and encourages further contributions!
+
+- [**Support server**](http://discord.com/invite/dmVMDnm5df) *(My personal server)*
