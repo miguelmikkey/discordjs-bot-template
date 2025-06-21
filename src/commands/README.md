@@ -12,6 +12,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/miguelmikkey/discordjs-bot-template)
 
 </div>
+
 # SlashCommands Guides 🪄  
 ### 1. [Command permissions](https://discordjs.guide/slash-commands/permissions.html#member-permissions)
 - [Bitwise Permission Flags](https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags)
