@@ -23,6 +23,7 @@
 - [DJS Guide #Contexts](https://discordjs.guide/slash-commands/permissions.html#contexts)
 ### 3. [Options](https://discordjs.guide/slash-commands/advanced-creation.html#adding-options)
 - [DJS Guide](https://discordjs.guide/slash-commands/advanced-creation.html#adding-options)
+- Options manged in `[interactionCreate.js](https://github.com/miguelmikkey/discordjs-bot-template/blob/main/src/events/interaction/interactionCreate.js)`
 
 ## Command template *([./src/commands/test/template.js](https://github.com/miguelmikkey/discordjs-bot-template/blob/main/src/commands/test/template.js))*
 
