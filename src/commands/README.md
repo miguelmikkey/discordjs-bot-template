@@ -23,7 +23,7 @@
 ### 3. [Options](https://discordjs.guide/slash-commands/advanced-creation.html#adding-options)
 - [DJS Guide](https://discordjs.guide/slash-commands/advanced-creation.html#adding-options)
 
-## Command template *([./src/commands/template.js](https://github.com/miguelmikkey/discordjs-bot-template/blob/main/src/commands/template.js))*
+## Command template *([./src/commands/test/template.js](https://github.com/miguelmikkey/discordjs-bot-template/blob/main/src/commands/test/template.js))*
 
 ```js
 const { SlashCommandBuilder } = require("discord.js");
